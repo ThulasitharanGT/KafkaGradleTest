@@ -13,8 +13,8 @@ object AtomicityUpdateFromMysqlDb
   val propertiesStream = new FileInputStream(userDir+"/src/main/scala/com/properties/Mysql_auth.properties")
   val mysqlProps= new Properties()
   mysqlProps.load(propertiesStream)
-  val Mysql_connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/kafka_db?useLegacyDatetimeCode=false&serverTimezone=UTC", mysqlProps)
-
+  val db="kafka_db"
+   val Mysql_connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db+"?useLegacyDatetimeCode=false&serverTimezone=UTC", mysqlProps)
 
   def saveAndCommit(Kafka_consumer:KafkaConsumer[String,String],Consumer_record:ConsumerRecord[String,String]):Unit =
 {
@@ -22,8 +22,8 @@ object AtomicityUpdateFromMysqlDb
 
      Class.forName("com.mysql.jdbc.Driver")
      Mysql_connection.setAutoCommit(false)
-     var insertSql="insert into tss_data values ('"+Consumer_record.key+"','"+Consumer_record.value+ "') "
-     var UpdateSql="update tss_offset set offset="+(Consumer_record.offset+1)+" where Topicname= '"+Consumer_record.topic+"' and partition_id="+Consumer_record.partition()+" "
+     val insertSql="insert into "+db+".tss_data values ('"+Consumer_record.key+"','"+Consumer_record.value+ "') "
+     val UpdateSql="update "+db+".tss_offset set offset="+(Consumer_record.offset+1)+" where Topicname= '"+Consumer_record.topic+"' and partition_id="+Consumer_record.partition()+" "
      println("Performing Query --->>> ")
      println(insertSql)
      val InsertSqlStatement= Mysql_connection.prepareStatement(insertSql)
@@ -50,7 +50,7 @@ object AtomicityUpdateFromMysqlDb
 
       Class.forName("com.mysql.jdbc.Driver")
       Mysql_connection.setAutoCommit(false)
-      var SelectSql="select offset from tss_offset where  Topicname = '"+Topic_Partition.topic()+"' and partition_id="+Topic_Partition.partition()
+      var SelectSql="select offset from "+db+".tss_offset where  Topicname = '"+Topic_Partition.topic()+"' and partition_id="+Topic_Partition.partition()
       println("Performing Query --->>> ")
       println(SelectSql)
       val Partition_Statement = Mysql_connection.createStatement()
