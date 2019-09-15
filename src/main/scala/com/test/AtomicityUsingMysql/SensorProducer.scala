@@ -1,11 +1,8 @@
-package com.test
+package com.test.AtomicityUsingMysql
 
-import java.util._
-import org.apache.kafka.clients.producer._
+import java.util.Properties
 
-
-// The objective here is to have 10 partitions in a topic.
-// imagine many sensors are sending data to this topic and you want to dedicate 3 partitions to a particular sensor
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
 object SensorProducer {
   def main(args: Array[String]): Unit = {
@@ -14,7 +11,7 @@ object SensorProducer {
     props.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094")
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-    props.put("partitioner.class", "com.test.SensorPartitioner")
+    props.put("partitioner.class", "com.test.AtomicityUsingMysql.SensorPartitioner")
     props.put("stability.sensor.name", "SCS")
     props.put("tyre.sensor.name", "Tyre")
     val Kafka_Producer = new KafkaProducer[String, String](props)
@@ -32,5 +29,3 @@ object SensorProducer {
 
   }
 }
-
-

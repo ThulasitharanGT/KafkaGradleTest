@@ -1,9 +1,10 @@
-package com.test
+package com.test.RebalanceListener
 
 import java.util._
 
 import org.apache.kafka.clients.consumer._
 import org.apache.kafka.common._
+
 import scala.collection.JavaConverters._
 
 class RebalanceListener extends ConsumerRebalanceListener{
@@ -22,7 +23,16 @@ class RebalanceListener extends ConsumerRebalanceListener{
   }
 
   override def onPartitionsRevoked(partitions: Collection[TopicPartition]): Unit = {
-
+    println("Following Partitions are Revoked ....")
+    for(i <- partitions.asScala)
+    {
+      println(i.partition() + ",")
+    }
+    println("Following Partitions are Commited till now  ....")
+    for(i <- currentOffsetsMap.keySet.asScala)
+    {
+      println(i.partition())
+    }
   }
 
   override def onPartitionsAssigned(partitions: Collection[TopicPartition]): Unit =  {
@@ -31,7 +41,7 @@ class RebalanceListener extends ConsumerRebalanceListener{
       {
         println(i.partition() + ",")
       }
-    println("Following Partitions are Commited ....")
+    println("Following Partitions are Commited till now ....")
     for(i <- currentOffsetsMap.keySet.asScala)
     {
       println(i.partition())

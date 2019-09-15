@@ -1,11 +1,11 @@
-package com.test
+package com.test.AtomicityUsingMysql
 
-import java.sql._
-import java.util._
-import java.io._
+import java.io.FileInputStream
+import java.sql.{DriverManager, ResultSet}
+import java.util.Properties
 
-import org.apache.kafka.clients.consumer._
-import org.apache.kafka.common._
+import org.apache.kafka.clients.consumer.{ConsumerRecord, KafkaConsumer}
+import org.apache.kafka.common.TopicPartition
 
 object AtomicityUpdateFromMysqlDb
 {

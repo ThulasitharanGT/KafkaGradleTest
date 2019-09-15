@@ -1,9 +1,9 @@
-package com.test
+package com.test.RebalanceListener
 
-import java.util._
-import scala.collection.JavaConverters._
+import java.util.{Arrays, Properties}
 
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import scala.collection.JavaConverters._
 
 object ConsumerCommitRebalanceListenerVersion {
   def main (args: Array[String]) :Unit = {

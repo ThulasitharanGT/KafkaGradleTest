@@ -1,10 +1,10 @@
-package com.test
+package com.test.AtomicityUsingMysql
 
-import java.util._
+import java.util.{Arrays, Properties}
 
-import scala.collection.JavaConverters._
-import org.apache.kafka.clients.consumer._
+import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.TopicPartition
+import scala.collection.JavaConverters._
 
 object ConsumerAtomicUpdateUsingMysqlDb {
   def main (args: Array[String]) :Unit = {

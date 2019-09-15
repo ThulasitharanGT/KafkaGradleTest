@@ -1,7 +1,8 @@
-package com.test
+package com.test.AtomicityUsingMysql
 
 import java.util._
 import java.util.concurrent.ThreadLocalRandom
+
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.common._
 import org.apache.kafka.common.record._
