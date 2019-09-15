@@ -1,0 +1,54 @@
+Starting Zookeeper
+--------------------------------
+sh bin/zookeeper-server-start.sh  config/zookeeper.properties
+
+Starting Kafka Broker
+--------------------------------
+sh bin/kafka-server-start.sh config/server1.properties
+
+sh bin/kafka-server-start.sh config/server2.properties
+
+sh bin/kafka-server-start.sh config/server3.properties
+
+=============================================
+Creating Topic
+--------------------------------
+sh bin/kafka-topics.sh --create --zookeeper localhost:3039 --replication-factor 1 --partitions 1 --topic sampleTopic
+
+creating producer for a topic
+--------------------------------
+sh bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sampleTopic
+
+creating consumer for a topic
+--------------------------------
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sampleTopic
+
+===========================
+
+Partitioned Consumer
+--------------------------------
+
+bin/kafka-topics.sh --zookeeper localhost:3039 --delete --topic CarSensor
+
+bin/kafka-topics.sh --describe --zookeeper localhost:3039 --topic CarSensor
+
+bin/kafka-topics.sh --create --zookeeper localhost:3039 --replication-factor 3 --partitions 10 --topic CarSensor
+
+
+Mysql DDL and Pre Req for Atomic DB
+------------------------------------
+create database kafka_db;
+use kafka_db;
+create table tss_offset (Topicname VARCHAR(100),partition_id INT,offset INT);
+create table tss_data (Messagekey VARCHAR(20),Messagevalue VARCHAR(100) ,partition_id INT);
+
+insert into tss_offset values ("CarSensor",0,0);
+insert into tss_offset values ("CarSensor",1,0);
+insert into tss_offset values ("CarSensor",2,0);
+insert into tss_offset values ("CarSensor",3,0);
+insert into tss_offset values ("CarSensor",4,0);
+insert into tss_offset values ("CarSensor",5,0);
+insert into tss_offset values ("CarSensor",6,0);
+insert into tss_offset values ("CarSensor",7,0);
+insert into tss_offset values ("CarSensor",8,0);
+insert into tss_offset values ("CarSensor",9,0);
