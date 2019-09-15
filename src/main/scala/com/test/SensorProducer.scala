@@ -15,7 +15,7 @@ object SensorProducer {
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("partitioner.class", "com.test.SensorPartitioner")
-    props.put("traction.sensor.name", "TCS")
+    props.put("stability.sensor.name", "SCS")
     props.put("tyre.sensor.name", "Tyre")
     val Kafka_Producer = new KafkaProducer[String, String](props)
     for (i <- 1 to 100) {

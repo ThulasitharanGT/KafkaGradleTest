@@ -22,7 +22,7 @@ object AtomicityUpdateFromMysqlDb
 
      Class.forName("com.mysql.jdbc.Driver")
      Mysql_connection.setAutoCommit(false)
-     val insertSql="insert into "+db+".tss_data values ('"+Consumer_record.key+"','"+Consumer_record.value+ "') "
+     val insertSql="insert into "+db+".tss_data values ('"+Consumer_record.key+"','"+Consumer_record.value+ "',"+Consumer_record.partition()+") "
      val UpdateSql="update "+db+".tss_offset set offset="+(Consumer_record.offset+1)+" where Topicname= '"+Consumer_record.topic+"' and partition_id="+Consumer_record.partition()+" "
      println("Performing Query --->>> ")
      println(insertSql)

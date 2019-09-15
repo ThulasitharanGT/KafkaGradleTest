@@ -8,11 +8,11 @@ import org.apache.kafka.common.record._
 
 class SensorPartitioner extends Partitioner{
 
-  var tractionSensorName:String=null
+  var stabilitySensorName:String=null
   var tyreSensorName:String=null
 
   override def configure(configs: Map[String, _]): Unit = {
-    tractionSensorName=configs.get("traction.sensor.name").toString()
+    stabilitySensorName=configs.get("stability.sensor.name").toString()
     tyreSensorName=configs.get("tyre.sensor.name").toString()
   }
 
@@ -36,13 +36,22 @@ class SensorPartitioner extends Partitioner{
       }
 
     println("Key = "+key.toString+" Partition = "+ p)
- */
+
   key match
       {
-    case value if value.equals(tractionSensorName) =>   p =  ThreadLocalRandom.current().nextInt(0,sptrac-1)
-    case value if value.equals(tyreSensorName) =>   p =  ThreadLocalRandom.current().nextInt(sptrac,sptyre-1)
-    case _ =>   p =  ThreadLocalRandom.current().nextInt(sptyre,NumPartitions-1)
+    case value if value.equals(stabilitySensorName) =>    ThreadLocalRandom.current().nextInt(0,sptrac-1) match {case value if value >=0 &&  value <=sptrac-1 => p=value case _ =>  println("Tcs partition assignment error") }
+    case value if value.equals(tyreSensorName) =>     ThreadLocalRandom.current().nextInt(sptrac,sptyre-1)  match {case value if value >=sptrac &&  value <=sptyre-1 => p=value case _ =>  println("tyre partition assignment error") }
+    case _ =>  ThreadLocalRandom.current().nextInt(sptyre,NumPartitions-1)  match {case value if value >=sptyre &&  value <=NumPartitions-1 => p=value case _ =>  println("other partition assignment error") }
   }
+   */
+
+    key match
+    {
+      case value if value.equals(stabilitySensorName) =>   ThreadLocalRandom.current().nextInt(0,sptrac) match {case value if value >=0 &&  value <=sptrac-1 => p=value case _ =>  println("Tcs partition assignment error") }
+      case value if value.equals(tyreSensorName) =>     ThreadLocalRandom.current().nextInt(sptrac,sptyre)  match {case value if value >=sptrac &&  value <=sptyre-1 => p=value case _ =>  println("tyre partition assignment error") }
+      case _ =>  ThreadLocalRandom.current().nextInt(sptyre,NumPartitions)  match {case value if value >=sptyre &&  value <=NumPartitions-1 => p=value case _ =>  println("other partition assignment error") }
+    }
+
     println("Key = "+key.toString+" Partition = "+ p)
     p
   }
