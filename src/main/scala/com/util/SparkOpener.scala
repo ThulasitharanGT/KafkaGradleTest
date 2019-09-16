@@ -3,11 +3,7 @@ package com.util
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-trait SparkOpener {
-
-
-
-  trait SparkOpener
+trait SparkOpener
   {
 
     def SparkSessionLoc(name:String):SparkSession={
@@ -17,4 +13,4 @@ trait SparkOpener {
       SparkSession.builder().config(conf).getOrCreate()
     }
   }
-}
+

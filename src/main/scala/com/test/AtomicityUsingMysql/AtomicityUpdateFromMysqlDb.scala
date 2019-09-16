@@ -14,7 +14,7 @@ object AtomicityUpdateFromMysqlDb
   val mysqlProps= new Properties()
   mysqlProps.load(propertiesStream)
   val db="kafka_db"
-   val Mysql_connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db+"?useLegacyDatetimeCode=false&serverTimezone=UTC", mysqlProps)
+  val Mysql_connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db+"?useLegacyDatetimeCode=false&serverTimezone=UTC", mysqlProps)
 
   def saveAndCommit(Kafka_consumer:KafkaConsumer[String,String],Consumer_record:ConsumerRecord[String,String]):Unit =
 {
