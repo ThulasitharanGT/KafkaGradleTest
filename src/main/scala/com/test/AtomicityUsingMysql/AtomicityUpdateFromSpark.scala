@@ -17,21 +17,28 @@ object AtomicityUpdateFromSpark {
         val tempMap=partitionMap(i)
         val KeyS=tempMap.keys
         for (k <- KeyS)
-        filePath=filePath+"/"+k+"="+tempMap(k)
+        filePath=filePath+k+"="+tempMap(k)
       }
 
-    val filePresent=filePath!
-
-    filePresent match {
-      case 0 => DFtoSave.write.mode("overwrite").option("header","true").option("delimiter","|").parquet(filePath)
-      case _ => DFtoSave.write.mode("append").option("header","true").option("delimiter","|").parquet(filePath)
+    filePath! match {
+      case 0 => DFtoSave.write.mode("overwrite").parquet(filePath)
+      case _ => DFtoSave.write.mode("append").parquet(filePath)
     }
   }
+
+  def getCommit(topicName:String,partitionID:Int)={
+
+  }
+
+  //def offsetCommit()
+
+
 
   def saveAndCommitSpark(Kafka_consumer:KafkaConsumer[String,String],Consumer_record:ConsumerRecord[String,String],spark:SparkSession,offsetDF:DataFrame,dataDF:DataFrame,topicName:String,partitionMap:collection.mutable.Map[Int,collection.mutable.Map[String,String]]):Unit =
   {
     try
     {
+
 
       dataDF.count match
       {
