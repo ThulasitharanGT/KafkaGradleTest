@@ -2,7 +2,6 @@ package com.test.AtomicityUsingMysql
 
 import com.util.SparkOpener
 
-
 object testScalaSparkKafkaRead extends SparkOpener{
 
   val spark=SparkSessionLoc("Temp For Kafka")
@@ -13,7 +12,9 @@ object testScalaSparkKafkaRead extends SparkOpener{
     val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("startingOffsets", "earliest").option("subscribe", "CarSensor").load()  //
     println("-----------------------------------------><----------------------------------------------")
     try {
-      val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation","checkpoint").option("path",System.getProperty("user.dir")+"/output/kafka/CasSensor").partitionBy("key").start()
+      //val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation","checkpoint").option("path",System.getProperty("user.dir")+"/output/kafka/CarSensor").partitionBy("key").start()
+      val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation",System.getProperty("user.dir")+"/checkpointStream/checkpoint").option("path",System.getProperty("user.dir")+"/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key").start()
+      //.format("delta")  - delta does'nt work.. Jackson error came so imported dependenc
       query.awaitTermination()
     }
     catch  {
