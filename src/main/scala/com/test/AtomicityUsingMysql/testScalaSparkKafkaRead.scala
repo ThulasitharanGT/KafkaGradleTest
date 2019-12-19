@@ -13,8 +13,18 @@ object testScalaSparkKafkaRead extends SparkOpener{
     println("-----------------------------------------><----------------------------------------------")
     try {
       //val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation","checkpoint").option("path",System.getProperty("user.dir")+"/output/kafka/CarSensor").partitionBy("key").start()
-      val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation",System.getProperty("user.dir")+"/checkpointStream/checkpoint").option("path",System.getProperty("user.dir")+"/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key").start()
-      //.format("delta")  - delta does'nt work.. Jackson error came so imported dependenc
+    //  val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation",System.getProperty("user.dir")+"/checkpointStream/checkpoint").option("path",System.getProperty("user.dir")+"/output/kafkaTableDump/carSensorBronze").partitionBy("key").start()
+      //.format("delta")  - delta does'nt work.. Jackson error came so imported dependency
+    //hdfs
+    //val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("subscribe", "CarSensor").option("startingOffsets", "earliest").load()
+
+      val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation","hdfs://localhost/user/raptor/kafka/temp/checkpoint").option("path","hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key").start()
+
+      /* local
+      val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("subscribe", "CarSensor").option("startingOffsets", "earliest").load()
+
+      val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation","file:///home/raptor/kafka/temp/checkpoint").option("path","file:///home/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key").start()
+      */
       query.awaitTermination()
     }
     catch  {

@@ -40,8 +40,8 @@ binary dependencies:
    src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromMysqlDb.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromMysqlDb.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
    src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.kafka/kafka-clients/2.3.1/21664b0318d201ec412f9b02357b07ba94009c87/kafka-clients-2.3.1.jar
-   src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-catalyst_2.12/2.4.0/7a0382f7268e58967bebdb09391eac8e4eb87177/spark-catalyst_2.12-2.4.0.jar
-   src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.0/2f2331e79d815b394d9ad23d4ff0fb20c24e45ae/spark-sql_2.12-2.4.0.jar
+   src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-catalyst_2.12/2.4.4/50172ab29cae575c85216348cf22a544f7d7205/spark-catalyst_2.12-2.4.4.jar
+   src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.4/ec1d629508b27dd126a3b24ce8af91e72778e16f/spark-sql_2.12-2.4.4.jar
    src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-reflect/2.12.8/682d33402cdae50258afa2c0860eb54688dab610/scala-reflect-2.12.8.jar
    src/main/scala/com/test/AtomicityUsingMysql/AtomicityUpdateFromSpark.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
@@ -54,9 +54,9 @@ binary dependencies:
    src/main/scala/com/test/AtomicityUsingMysql/SensorProducer.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.kafka/kafka-clients/2.3.1/21664b0318d201ec412f9b02357b07ba94009c87/kafka-clients-2.3.1.jar
    src/main/scala/com/test/AtomicityUsingMysql/SensorProducer.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/test/AtomicityUsingMysql/SensorProducer.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
-   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-catalyst_2.12/2.4.0/7a0382f7268e58967bebdb09391eac8e4eb87177/spark-catalyst_2.12-2.4.0.jar
-   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.12/2.4.0/39394b518bba5f3b17aa395240cbe03db370ba0/spark-core_2.12-2.4.0.jar
-   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.0/2f2331e79d815b394d9ad23d4ff0fb20c24e45ae/spark-sql_2.12-2.4.0.jar
+   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-catalyst_2.12/2.4.4/50172ab29cae575c85216348cf22a544f7d7205/spark-catalyst_2.12-2.4.4.jar
+   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.12/2.4.4/6e606150eb038cccf319869de3c0cd32e6f9d2ff/spark-core_2.12-2.4.4.jar
+   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.4/ec1d629508b27dd126a3b24ce8af91e72778e16f/spark-sql_2.12-2.4.4.jar
    src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
    src/main/scala/com/test/ConsumerExample.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.kafka/kafka-clients/2.3.1/21664b0318d201ec412f9b02357b07ba94009c87/kafka-clients-2.3.1.jar
@@ -89,8 +89,8 @@ binary dependencies:
    src/main/scala/com/test/SynProducerExample.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.kafka/kafka-clients/2.3.1/21664b0318d201ec412f9b02357b07ba94009c87/kafka-clients-2.3.1.jar
    src/main/scala/com/test/SynProducerExample.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/test/SynProducerExample.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
-   src/main/scala/com/util/SparkOpener.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.12/2.4.0/39394b518bba5f3b17aa395240cbe03db370ba0/spark-core_2.12-2.4.0.jar
-   src/main/scala/com/util/SparkOpener.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.0/2f2331e79d815b394d9ad23d4ff0fb20c24e45ae/spark-sql_2.12-2.4.0.jar
+   src/main/scala/com/util/SparkOpener.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.12/2.4.4/6e606150eb038cccf319869de3c0cd32e6f9d2ff/spark-core_2.12-2.4.4.jar
+   src/main/scala/com/util/SparkOpener.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.4/ec1d629508b27dd126a3b24ce8af91e72778e16f/spark-sql_2.12-2.4.4.jar
    src/main/scala/com/util/SparkOpener.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/util/SparkOpener.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
 source dependencies:

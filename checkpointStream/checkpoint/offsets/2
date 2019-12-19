@@ -1,3 +1,0 @@
-v1
-{"batchWatermarkMs":0,"batchTimestampMs":1576471084779,"conf":{"spark.sql.streaming.stateStore.providerClass":"org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider","spark.sql.streaming.flatMapGroupsWithState.stateFormatVersion":"2","spark.sql.streaming.multipleWatermarkPolicy":"min","spark.sql.streaming.aggregation.stateFormatVersion":"2","spark.sql.shuffle.partitions":"200"}}
-{"CarSensor":{"8":106,"2":106,"5":77,"4":71,"7":100,"1":104,"9":94,"3":75,"6":77,"0":90}}
