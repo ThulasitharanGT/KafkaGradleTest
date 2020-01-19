@@ -1,6 +1,7 @@
 package com.test.AtomicityUsingMysql
 
 import com.util.SparkOpener
+import org.apache.spark.sql.functions._
 
 object testScalaSparkKafkaRead extends SparkOpener{
 
@@ -18,7 +19,7 @@ object testScalaSparkKafkaRead extends SparkOpener{
     //hdfs
     //val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("subscribe", "CarSensor").option("startingOffsets", "earliest").load()
 
-      val query = df.writeStream.outputMode("append").format("parquet").option("checkpointLocation","hdfs://localhost/user/raptor/kafka/temp/checkpoint").option("path","hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key").start()
+      val query = df.withColumn("date",lit("2019-12-27")).writeStream.outputMode("append").format("parquet").option("checkpointLocation","hdfs://localhost/user/raptor/kafka/temp/checkpoint").option("path","hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key","date","partition").start()
 
       /* local
       val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("subscribe", "CarSensor").option("startingOffsets", "earliest").load()
@@ -27,7 +28,7 @@ object testScalaSparkKafkaRead extends SparkOpener{
       */
       query.awaitTermination()
 
-      //// runs in spark 2.4.4 due to 3.2.10 jacson and json jars not supported for scala 2.12
+      //// runs in spark 2.4.4 due to 3.2.10 jackson and json jars not supported for scala 2.12
       //
       //cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
       //
