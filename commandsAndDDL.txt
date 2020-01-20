@@ -10,13 +10,6 @@ sh bin/kafka-server-start.sh config/server2.properties
 
 sh bin/kafka-server-start.sh config/server3.properties
 
-----------------------
-nohup sh bin/kafka-server-start.sh config/server1.properties &&
-nohup  sh bin/kafka-server-start.sh config/server2.properties &&
-nohup sh bin/kafka-server-start.sh config/server3.properties 
-----------------------
-org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.12:2.3.1
-
 =============================================
 Creating Topic
 --------------------------------
@@ -29,6 +22,8 @@ sh bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sampleTopi
 creating consumer for a topic
 --------------------------------
 /home/raptor/Softwares/kafka_2.12-2.3.1/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sampleTopic
+
+/home/raptor/Softwares/kafka_2.12-2.3.1/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic CarSensor
 
 ===========================
 
@@ -61,3 +56,21 @@ insert into tss_offset values ("CarSensor",6,0);
 insert into tss_offset values ("CarSensor",7,0);
 insert into tss_offset values ("CarSensor",8,0);
 insert into tss_offset values ("CarSensor",9,0);
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------
+nohup sh bin/kafka-server-start.sh config/server1.properties &&
+nohup  sh bin/kafka-server-start.sh config/server2.properties &&
+nohup sh bin/kafka-server-start.sh config/server3.properties 
+----------------------
+spark-shell --packages org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.12:2.3.1,org.apache.spark:spark-sql-kafka-0-10_2.12:2.4.4 --jars /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/KafkaGradleTest-1.0-SNAPSHOT-all.jar
+
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+
+spark-submit --class com.test.AtomicityUsingMysql.creatingTopicUsingAPI  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 --packages org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.12:2.3.1,org.apache.spark:spark-sql-kafka-0-10_2.12:2.4.4 KafkaGradleTest-1.0-SNAPSHOT-all.jar  topicName=CarSensor topicPartitions=10 topicReplicationFactor=3
+zookeeperIp=localhost:3039 isSecure=false sessionTimeOutMilliSecs=200000 connectionTimeOutMilliSecs=15000 maxInFlightRequests=20 metricGroup=myGroup metricType=myType
+
+
+

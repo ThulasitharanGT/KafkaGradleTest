@@ -17,7 +17,6 @@ object ConsumerExample {
     props.put("group.id",T_Group_Name)
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
-
     val Kafka_Consumer=new KafkaConsumer[String,String](props)
     Kafka_Consumer.subscribe(Arrays.asList(T_Name))
     while(true)
