@@ -1,0 +1,823 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 50331648 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2749), pid=20668, tid=0x00007f9c6208c700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_221-b11) (build 1.8.0_221-b11)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.221-b11 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f9c78085800):  VMThread [stack: 0x00007f9c61f8d000,0x00007f9c6208d000] [id=20697]
+
+Stack: [0x00007f9c61f8d000,0x00007f9c6208d000],  sp=0x00007f9c6208b3f0,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xad3455]  VMError::report_and_die()+0x2e5
+V  [libjvm.so+0x4e0537]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0x67
+V  [libjvm.so+0x910320]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0x100
+V  [libjvm.so+0x90794f]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x1f
+V  [libjvm.so+0x98c736]  PSVirtualSpace::expand_by(unsigned long)+0x56
+V  [libjvm.so+0x98d9c8]  PSYoungGen::resize(unsigned long, unsigned long)+0xd8
+V  [libjvm.so+0x98a166]  PSScavenge::invoke_no_policy()+0x1376
+V  [libjvm.so+0x98a4fc]  PSScavenge::invoke()+0x4c
+V  [libjvm.so+0x93a248]  ParallelScavengeHeap::failed_mem_allocate(unsigned long)+0x68
+V  [libjvm.so+0xad4fa3]  VM_ParallelGCFailedAllocation::doit()+0x93
+V  [libjvm.so+0xada1c6]  VM_Operation::evaluate()+0x46
+V  [libjvm.so+0xad84fd]  VMThread::evaluate_operation(VM_Operation*) [clone .constprop.44]+0xcd
+V  [libjvm.so+0xad8ae3]  VMThread::loop()+0x3a3
+V  [libjvm.so+0xad8eb8]  VMThread::run()+0x78
+V  [libjvm.so+0x90d952]  java_start(Thread*)+0x102
+
+VM_Operation (0x00007f9c7edb7ef0): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0x00007f9c78013000
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f9c78c40800 JavaThread "org.apache.hadoop.fs.FileSystem$Statistics$StatisticsDataReferenceCleaner" daemon [_thread_blocked, id=20709, stack(0x00007f9c606ba000,0x00007f9c607bb000)]
+  0x00007f9c789cc800 JavaThread "process reaper" daemon [_thread_blocked, id=20707, stack(0x00007f9c607bb000,0x00007f9c607f4000)]
+  0x00007f9c780d6800 JavaThread "Service Thread" daemon [_thread_blocked, id=20704, stack(0x00007f9c60eb6000,0x00007f9c60fb7000)]
+  0x00007f9c780cb000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=20703, stack(0x00007f9c60fb8000,0x00007f9c610b8000)]
+  0x00007f9c780c9800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=20702, stack(0x00007f9c610b9000,0x00007f9c611b9000)]
+  0x00007f9c780c6800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=20701, stack(0x00007f9c611ba000,0x00007f9c612ba000)]
+  0x00007f9c780c4800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=20700, stack(0x00007f9c612ba000,0x00007f9c613bb000)]
+  0x00007f9c78094000 JavaThread "Finalizer" daemon [_thread_blocked, id=20699, stack(0x00007f9c61d8a000,0x00007f9c61e8b000)]
+  0x00007f9c7808f800 JavaThread "Reference Handler" daemon [_thread_blocked, id=20698, stack(0x00007f9c61e8b000,0x00007f9c61f8c000)]
+  0x00007f9c78013000 JavaThread "main" [_thread_blocked, id=20690, stack(0x00007f9c7ecbc000,0x00007f9c7edbc000)]
+
+Other Threads:
+=>0x00007f9c78085800 VMThread [stack: 0x00007f9c61f8d000,0x00007f9c6208d000] [id=20697]
+  0x00007f9c780d9800 WatcherThread [stack: 0x00007f9c60db6000,0x00007f9c60eb6000] [id=20705]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f9c7800f9f0] Threads_lock - owner thread: 0x00007f9c78085800
+[0x00007f9c7800fef0] Heap_lock - owner thread: 0x00007f9c78013000
+
+heap address: 0x00000000e0000000, size: 512 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ PSYoungGen      total 52736K, used 3581K [0x00000000f5580000, 0x00000000f8c80000, 0x0000000100000000)
+  eden space 49152K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000f8580000)
+  from space 3584K, 99% used [0x00000000f8580000,0x00000000f88ff580,0x00000000f8900000)
+  to   space 3584K, 0% used [0x00000000f8900000,0x00000000f8900000,0x00000000f8c80000)
+ ParOldGen       total 64512K, used 5912K [0x00000000e0000000, 0x00000000e3f00000, 0x00000000f5580000)
+  object space 64512K, 9% used [0x00000000e0000000,0x00000000e05c6358,0x00000000e3f00000)
+ Metaspace       used 15101K, capacity 15296K, committed 15488K, reserved 1062912K
+  class space    used 1807K, capacity 1896K, committed 1920K, reserved 1048576K
+
+Card table byte_map: [0x00007f9c7c084000,0x00007f9c7c185000] byte_map_base: 0x00007f9c7b984000
+
+Marking Bits: (ParMarkBitMap*) 0x00007f9c7e164d80
+ Begin Bits: [0x00007f9c5b000000, 0x00007f9c5b800000)
+ End Bits:   [0x00007f9c5b800000, 0x00007f9c5c000000)
+
+Polling page: 0x00007f9c7edd2000
+
+CodeCache: size=245760Kb used=4240Kb max_used=4240Kb free=241519Kb
+ bounds [0x00007f9c68bd2000, 0x00007f9c69002000, 0x00007f9c77bd2000]
+ total_blobs=1528 nmethods=1155 adapters=287
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 1.800 Thread 0x00007f9c780cb000 nmethod 1149 0x00007f9c68ff16d0 code [0x00007f9c68ff1840, 0x00007f9c68ff1ad0]
+Event: 1.800 Thread 0x00007f9c780cb000 1152       1       java.util.LinkedHashMap::removeEldestEntry (2 bytes)
+Event: 1.800 Thread 0x00007f9c780cb000 nmethod 1152 0x00007f9c68ff1350 code [0x00007f9c68ff14a0, 0x00007f9c68ff15b0]
+Event: 1.800 Thread 0x00007f9c780cb000 1144       3       sun.misc.ProxyGenerator::access$900 (5 bytes)
+Event: 1.800 Thread 0x00007f9c780cb000 nmethod 1144 0x00007f9c68ff7010 code [0x00007f9c68ff7180, 0x00007f9c68ff73c8]
+Event: 1.800 Thread 0x00007f9c780cb000 1146       3       sun.misc.ProxyGenerator$ConstantPool::getMethodRef (33 bytes)
+Event: 1.801 Thread 0x00007f9c780cb000 nmethod 1146 0x00007f9c68ff74d0 code [0x00007f9c68ff7760, 0x00007f9c68ff8508]
+Event: 1.801 Thread 0x00007f9c780cb000 1153       1       java.lang.reflect.Constructor::getDeclaringClass (5 bytes)
+Event: 1.801 Thread 0x00007f9c780cb000 nmethod 1153 0x00007f9c68ff9010 code [0x00007f9c68ff9160, 0x00007f9c68ff9270]
+Event: 1.826 Thread 0x00007f9c780c6800 1158   !   4       java.net.URL::<init> (543 bytes)
+
+GC Heap History (5 events):
+Event: 0.870 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 28160K, used 24576K [0x00000000f5580000, 0x00000000f7480000, 0x0000000100000000)
+  eden space 24576K, 100% used [0x00000000f5580000,0x00000000f6d80000,0x00000000f6d80000)
+  from space 3584K, 0% used [0x00000000f7100000,0x00000000f7100000,0x00000000f7480000)
+  to   space 3584K, 0% used [0x00000000f6d80000,0x00000000f6d80000,0x00000000f7100000)
+ ParOldGen       total 64512K, used 0K [0x00000000e0000000, 0x00000000e3f00000, 0x00000000f5580000)
+  object space 64512K, 0% used [0x00000000e0000000,0x00000000e0000000,0x00000000e3f00000)
+ Metaspace       used 7461K, capacity 7682K, committed 7936K, reserved 1056768K
+  class space    used 888K, capacity 963K, committed 1024K, reserved 1048576K
+Event: 0.885 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 28160K, used 3582K [0x00000000f5580000, 0x00000000f8c80000, 0x0000000100000000)
+  eden space 24576K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000f6d80000)
+  from space 3584K, 99% used [0x00000000f6d80000,0x00000000f70ffb38,0x00000000f7100000)
+  to   space 3584K, 0% used [0x00000000f8900000,0x00000000f8900000,0x00000000f8c80000)
+ ParOldGen       total 64512K, used 408K [0x00000000e0000000, 0x00000000e3f00000, 0x00000000f5580000)
+  object space 64512K, 0% used [0x00000000e0000000,0x00000000e0066328,0x00000000e3f00000)
+ Metaspace       used 7461K, capacity 7682K, committed 7936K, reserved 1056768K
+  class space    used 888K, capacity 963K, committed 1024K, reserved 1048576K
+}
+Event: 1.236 GC heap before
+{Heap before GC invocations=2 (full 0):
+ PSYoungGen      total 28160K, used 28158K [0x00000000f5580000, 0x00000000f8c80000, 0x0000000100000000)
+  eden space 24576K, 100% used [0x00000000f5580000,0x00000000f6d80000,0x00000000f6d80000)
+  from space 3584K, 99% used [0x00000000f6d80000,0x00000000f70ffb38,0x00000000f7100000)
+  to   space 3584K, 0% used [0x00000000f8900000,0x00000000f8900000,0x00000000f8c80000)
+ ParOldGen       total 64512K, used 408K [0x00000000e0000000, 0x00000000e3f00000, 0x00000000f5580000)
+  object space 64512K, 0% used [0x00000000e0000000,0x00000000e0066328,0x00000000e3f00000)
+ Metaspace       used 9959K, capacity 10184K, committed 10368K, reserved 1058816K
+  class space    used 1205K, capacity 1284K, committed 1408K, reserved 1048576K
+Event: 1.240 GC heap after
+Heap after GC invocations=2 (full 0):
+ PSYoungGen      total 52736K, used 3570K [0x00000000f5580000, 0x00000000f8c80000, 0x0000000100000000)
+  eden space 49152K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000f8580000)
+  from space 3584K, 99% used [0x00000000f8900000,0x00000000f8c7cb48,0x00000000f8c80000)
+  to   space 3584K, 0% used [0x00000000f8580000,0x00000000f8580000,0x00000000f8900000)
+ ParOldGen       total 64512K, used 1594K [0x00000000e0000000, 0x00000000e3f00000, 0x00000000f5580000)
+  object space 64512K, 2% used [0x00000000e0000000,0x00000000e018e8e0,0x00000000e3f00000)
+ Metaspace       used 9959K, capacity 10184K, committed 10368K, reserved 1058816K
+  class space    used 1205K, capacity 1284K, committed 1408K, reserved 1048576K
+}
+Event: 1.909 GC heap before
+{Heap before GC invocations=3 (full 0):
+ PSYoungGen      total 52736K, used 52722K [0x00000000f5580000, 0x00000000f8c80000, 0x0000000100000000)
+  eden space 49152K, 100% used [0x00000000f5580000,0x00000000f8580000,0x00000000f8580000)
+  from space 3584K, 99% used [0x00000000f8900000,0x00000000f8c7cb48,0x00000000f8c80000)
+  to   space 3584K, 0% used [0x00000000f8580000,0x00000000f8580000,0x00000000f8900000)
+ ParOldGen       total 64512K, used 1594K [0x00000000e0000000, 0x00000000e3f00000, 0x00000000f5580000)
+  object space 64512K, 2% used [0x00000000e0000000,0x00000000e018e8e0,0x00000000e3f00000)
+ Metaspace       used 15101K, capacity 15296K, committed 15488K, reserved 1062912K
+  class space    used 1807K, capacity 1896K, committed 1920K, reserved 1048576K
+
+Deoptimization events (8 events):
+Event: 0.225 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68cdd5b4 method=java.lang.String.indexOf(II)I @ 49
+Event: 0.287 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68cdd09c method=java.lang.String.hashCode()I @ 14
+Event: 0.583 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68d9355c method=java.lang.String.indexOf([CII[CIII)I @ 3
+Event: 0.970 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68e99fdc method=org.apache.xerces.impl.XMLEntityScanner.skipChar(I)Z @ 14
+Event: 1.083 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68e9e14c method=org.apache.xerces.impl.XMLEntityScanner.scanContent(Lorg/apache/xerces/xni/XMLString;)I @ 461
+Event: 1.183 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68f6cb00 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 62
+Event: 1.184 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68effe64 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 62
+Event: 1.223 Thread 0x00007f9c78013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f9c68f63c74 method=org.apache.xerces.impl.XMLEntityScanner.scanQName(Lorg/apache/xerces/xni/QName;)Z @ 68
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 0.573 Thread 0x00007f9c78013000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/WriterAppenderBeanInfo> (0x00000000f5d653b8) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 0.573 Thread 0x00007f9c78013000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/AppenderSkeletonBeanInfo> (0x00000000f5d878f0) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 0.574 Thread 0x00007f9c78013000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/AppenderSkeletonCustomizer> (0x00000000f5dac270) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 0.576 Thread 0x00007f9c78013000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/WriterAppenderCustomizer> (0x00000000f5de3988) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 0.578 Thread 0x00007f9c78013000 Exception <a 'java/lang/ClassNotFoundException': org/apache/log4j/ConsoleAppenderCustomizer> (0x00000000f5e12860) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/classfile/systemDictionary.cpp, line 210]
+Event: 0.673 Thread 0x00007f9c78013000 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000f610b818) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/prims/methodHandles.cpp, line 1167]
+Event: 0.674 Thread 0x00007f9c78013000 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000f6118f08) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/prims/methodHandles.cpp, line 1167]
+Event: 1.284 Thread 0x00007f9c78013000 Exception <a 'java/io/FileNotFoundException'> (0x00000000f5a89fd0) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/prims/jni.cpp, line 710]
+Event: 1.284 Thread 0x00007f9c78013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000f5a8a620) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/prims/jvm.cpp, line 1502]
+Event: 1.284 Thread 0x00007f9c78013000 Exception <a 'java/lang/reflect/InvocationTargetException'> (0x00000000f5a8c6f0) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u221/13320/hotspot/src/share/vm/runtime/reflection.cpp, line 1092]
+
+Events (10 events):
+Event: 1.825 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsRequestProto done
+Event: 1.826 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsRequestProtoOrBuilder
+Event: 1.826 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsRequestProtoOrBuilder done
+Event: 1.826 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsResponseProto
+Event: 1.826 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsResponseProto done
+Event: 1.826 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsResponseProtoOrBuilder
+Event: 1.826 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$GetXAttrsResponseProtoOrBuilder done
+Event: 1.827 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$ListXAttrsRequestProto
+Event: 1.827 loading class org/apache/hadoop/hdfs/protocol/proto/XAttrProtos$ListXAttrsRequestProto done
+Event: 1.827 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 1708700                            /home/raptor/Softwares/jdk1.8.0_221/bin/java
+00600000-00601000 r--p 00000000 08:01 1708700                            /home/raptor/Softwares/jdk1.8.0_221/bin/java
+00601000-00602000 rw-p 00001000 08:01 1708700                            /home/raptor/Softwares/jdk1.8.0_221/bin/java
+00b14000-010a2000 rw-p 00000000 00:00 0                                  [heap]
+e0000000-e3f00000 rw-p 00000000 00:00 0 
+e3f00000-f5580000 ---p 00000000 00:00 0 
+f5580000-f8c80000 rw-p 00000000 00:00 0 
+fbc80000-100000000 ---p 00000000 00:00 0 
+100000000-1001e0000 rw-p 00000000 00:00 0 
+1001e0000-140000000 ---p 00000000 00:00 0 
+7f9c5a9e9000-7f9c5a9ff000 r-xp 00000000 08:01 1709010                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libnet.so
+7f9c5a9ff000-7f9c5abfe000 ---p 00016000 08:01 1709010                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libnet.so
+7f9c5abfe000-7f9c5abff000 r--p 00015000 08:01 1709010                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libnet.so
+7f9c5abff000-7f9c5ac00000 rw-p 00016000 08:01 1709010                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libnet.so
+7f9c5ac00000-7f9c5ad40000 rw-p 00000000 00:00 0 
+7f9c5ad40000-7f9c5ae00000 ---p 00000000 00:00 0 
+7f9c5ae00000-7f9c5c000000 rw-p 00000000 00:00 0 
+7f9c5c000000-7f9c5c396000 rw-p 00000000 00:00 0 
+7f9c5c396000-7f9c60000000 ---p 00000000 00:00 0 
+7f9c600a9000-7f9c600ae000 r--s 000a3000 08:01 1708968                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/jsse.jar
+7f9c600ae000-7f9c600af000 r-xp 00000000 08:01 1709040                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjaas_unix.so
+7f9c600af000-7f9c602ae000 ---p 00001000 08:01 1709040                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjaas_unix.so
+7f9c602ae000-7f9c602af000 r--p 00000000 08:01 1709040                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjaas_unix.so
+7f9c602af000-7f9c602b0000 rw-p 00001000 08:01 1709040                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjaas_unix.so
+7f9c602b0000-7f9c604b0000 rw-p 00000000 00:00 0 
+7f9c604b0000-7f9c604b9000 r-xp 00000000 08:01 1709011                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libmanagement.so
+7f9c604b9000-7f9c606b8000 ---p 00009000 08:01 1709011                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libmanagement.so
+7f9c606b8000-7f9c606b9000 r--p 00008000 08:01 1709011                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libmanagement.so
+7f9c606b9000-7f9c606ba000 rw-p 00009000 08:01 1709011                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libmanagement.so
+7f9c606ba000-7f9c606bd000 ---p 00000000 00:00 0 
+7f9c606bd000-7f9c607bb000 rw-p 00000000 00:00 0 
+7f9c607bb000-7f9c607be000 ---p 00000000 00:00 0 
+7f9c607be000-7f9c607f4000 rw-p 00000000 00:00 0 
+7f9c607f4000-7f9c607f9000 r--s 00044000 08:01 271483                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar
+7f9c607f9000-7f9c607fb000 r--s 0000e000 08:01 271481                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.3.jar
+7f9c607fb000-7f9c607ff000 r--s 0002b000 08:01 271480                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-2.7.3.jar
+7f9c607ff000-7f9c60815000 r--s 00165000 08:01 271484                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.3-tests.jar
+7f9c60815000-7f9c60816000 r--s 00006000 08:01 271482                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-plugins-2.7.3.jar
+7f9c60816000-7f9c60820000 r--s 0007a000 08:01 271479                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-app-2.7.3.jar
+7f9c60820000-7f9c60822000 r--s 00010000 08:01 271478                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-shuffle-2.7.3.jar
+7f9c60822000-7f9c6083a000 r--s 00164000 08:01 271476                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.7.3.jar
+7f9c6083a000-7f9c60847000 r--s 000b0000 08:01 271477                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-client-common-2.7.3.jar
+7f9c60847000-7f9c60848000 r--s 00000000 08:01 271468                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/javax.inject-1.jar
+7f9c60848000-7f9c60849000 r--s 00009000 08:01 271459                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/hadoop-annotations-2.7.3.jar
+7f9c60849000-7f9c6084b000 r--s 00006000 08:01 271455                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/paranamer-2.3.jar
+7f9c6084b000-7f9c6084d000 r--s 0000e000 08:01 271471                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/guice-servlet-3.0.jar
+7f9c6084d000-7f9c6085f000 r--s 0009d000 08:01 271462                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/jersey-server-1.9.jar
+7f9c6085f000-7f9c60861000 r--s 000f2000 08:01 271456                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/snappy-java-1.0.4.1.jar
+7f9c60861000-7f9c6086b000 r--s 00066000 08:01 271461                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/jersey-core-1.9.jar
+7f9c6086b000-7f9c60879000 r--s 000b1000 08:01 271454                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/jackson-mapper-asl-1.9.13.jar
+7f9c60879000-7f9c6087e000 r--s 00036000 08:01 271457                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/commons-compress-1.4.1.jar
+7f9c6087e000-7f9c6088d000 r--s 0009f000 08:01 271467                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/guice-3.0.jar
+7f9c6088d000-7f9c60896000 r--s 0006f000 08:01 271464                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/log4j-1.2.17.jar
+7f9c60896000-7f9c60897000 r--s 0000a000 08:01 271463                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/asm-3.2.jar
+7f9c60897000-7f9c6089b000 r--s 00014000 08:01 271458                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/xz-1.0.jar
+7f9c6089b000-7f9c608a2000 r--s 00044000 08:01 271452                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/avro-1.7.4.jar
+7f9c608a2000-7f9c608a5000 r--s 000fd000 08:01 271466                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/leveldbjni-all-1.8.jar
+7f9c608a5000-7f9c608a7000 r--s 00000000 08:01 271469                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/aopalliance-1.0.jar
+7f9c608a7000-7f9c608ad000 r--s 00036000 08:01 271472                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/junit-4.11.jar
+7f9c608ad000-7f9c608b1000 r--s 00035000 08:01 271453                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/jackson-core-asl-1.9.13.jar
+7f9c608b1000-7f9c608b3000 r--s 00009000 08:01 271473                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/hamcrest-core-1.3.jar
+7f9c608b3000-7f9c608b4000 r--s 00003000 08:01 271470                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/jersey-guice-1.9.jar
+7f9c608b4000-7f9c608cb000 r--s 0010e000 08:01 271465                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/netty-3.6.2.Final.jar
+7f9c608cb000-7f9c608d3000 r--s 0007b000 08:01 271451                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/protobuf-java-2.5.0.jar
+7f9c608d3000-7f9c608d7000 r--s 0002a000 08:01 271460                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/mapreduce/lib/commons-io-2.4.jar
+7f9c608d7000-7f9c608dc000 r--s 00031000 08:01 2502242                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-applicationhistoryservice-2.7.3.jar
+7f9c608dc000-7f9c608f4000 r--s 00182000 08:01 2502238                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-common-2.7.3.jar
+7f9c608f4000-7f9c608f5000 r--s 00010000 08:01 2502247                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-2.7.3.jar
+7f9c608f5000-7f9c608f8000 r--s 00026000 08:01 2502245                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-client-2.7.3.jar
+7f9c608f8000-7f9c608fa000 r--s 00008000 08:01 2502248                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-applications-unmanaged-am-launcher-2.7.3.jar
+7f9c608fa000-7f9c608fc000 r--s 0000e000 08:01 2502244                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-tests-2.7.3.jar
+7f9c608fc000-7f9c60919000 r--s 001d3000 08:01 2502237                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-api-2.7.3.jar
+7f9c60919000-7f9c6091c000 r--s 0001b000 08:01 2502249                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-registry-2.7.3.jar
+7f9c6091c000-7f9c6091e000 r--s 00011000 08:01 2502246                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-sharedcachemanager-2.7.3.jar
+7f9c6091e000-7f9c60926000 r--s 00057000 08:01 2502239                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-common-2.7.3.jar
+7f9c60926000-7f9c60928000 r--s 0000d000 08:01 2502241                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-web-proxy-2.7.3.jar
+7f9c60928000-7f9c6093e000 r--s 00122000 08:01 2502243                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-resourcemanager-2.7.3.jar
+7f9c6093e000-7f9c6094c000 r--s 000a1000 08:01 2502240                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/hadoop-yarn-server-nodemanager-2.7.3.jar
+7f9c6094c000-7f9c60953000 r--s 0007d000 08:01 271429                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jetty-6.1.26.jar
+7f9c60953000-7f9c60955000 r--s 0000e000 08:01 271396                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-logging-1.1.3.jar
+7f9c60955000-7f9c60976000 r--s 00172000 08:01 271394                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/guava-11.0.2.jar
+7f9c60976000-7f9c60977000 r--s 00000000 08:01 271416                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/javax.inject-1.jar
+7f9c60977000-7f9c60979000 r--s 0000e000 08:01 271414                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/guice-servlet-3.0.jar
+7f9c60979000-7f9c6098b000 r--s 0009d000 08:01 271419                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jersey-server-1.9.jar
+7f9c6098b000-7f9c60994000 r--s 0007b000 08:01 271392                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/zookeeper-3.4.6-tests.jar
+7f9c60994000-7f9c60996000 r--s 00009000 08:01 271398                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-cli-1.2.jar
+7f9c60996000-7f9c60999000 r--s 0001d000 08:01 271409                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jersey-client-1.9.jar
+7f9c60999000-7f9c609a3000 r--s 00066000 08:01 271408                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jersey-core-1.9.jar
+7f9c609a3000-7f9c609a5000 r--s 0000f000 08:01 271422                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jettison-1.1.jar
+7f9c609a5000-7f9c609b3000 r--s 000b1000 08:01 271411                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jackson-mapper-asl-1.9.13.jar
+7f9c609b3000-7f9c609b4000 r--s 00004000 08:01 271412                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jackson-jaxrs-1.9.13.jar
+7f9c609b4000-7f9c609b9000 r--s 00036000 08:01 271403                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-compress-1.4.1.jar
+7f9c609b9000-7f9c609c8000 r--s 0009f000 08:01 271415                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/guice-3.0.jar
+7f9c609c8000-7f9c609cd000 r--s 00041000 08:01 271393                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-lang-2.6.jar
+7f9c609cd000-7f9c609d6000 r--s 0006f000 08:01 271399                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/log4j-1.2.17.jar
+7f9c609d6000-7f9c609d9000 r--s 00006000 08:01 271395                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jsr305-3.0.0.jar
+7f9c609d9000-7f9c609e5000 r--s 000b6000 08:01 271425                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/zookeeper-3.4.6.jar
+7f9c609e5000-7f9c609e8000 r--s 00017000 08:01 271400                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jaxb-api-2.2.2.jar
+7f9c609e8000-7f9c609e9000 r--s 0000a000 08:01 271420                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/asm-3.2.jar
+7f9c609e9000-7f9c609ed000 r--s 00014000 08:01 271404                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/xz-1.0.jar
+7f9c609ed000-7f9c609ef000 r--s 0000d000 08:01 271406                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-codec-1.4.jar
+7f9c609ef000-7f9c609f2000 r--s 000fd000 08:01 271427                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/leveldbjni-all-1.8.jar
+7f9c609f2000-7f9c609f4000 r--s 00000000 08:01 271417                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/aopalliance-1.0.jar
+7f9c609f4000-7f9c609f8000 r--s 00021000 08:01 271421                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jersey-json-1.9.jar
+7f9c609f8000-7f9c609fc000 r--s 00035000 08:01 271410                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jackson-core-asl-1.9.13.jar
+7f9c609fc000-7f9c609fd000 r--s 00006000 08:01 271413                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jackson-xc-1.9.13.jar
+7f9c609fd000-7f9c609ff000 r--s 00004000 08:01 271401                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/stax-api-1.0-2.jar
+7f9c609ff000-7f9c60a01000 r--s 00018000 08:01 271405                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/servlet-api-2.5.jar
+7f9c60a01000-7f9c60a14000 r--s 000c7000 08:01 271423                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jaxb-impl-2.2.3-1.jar
+7f9c60a14000-7f9c60a16000 r--s 0000e000 08:01 271402                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/activation-1.1.jar
+7f9c60a16000-7f9c60a17000 r--s 00003000 08:01 271424                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jersey-guice-1.9.jar
+7f9c60a17000-7f9c60a2e000 r--s 0010e000 08:01 271426                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/netty-3.6.2.Final.jar
+7f9c60a2e000-7f9c60a36000 r--s 0007b000 08:01 271397                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/protobuf-java-2.5.0.jar
+7f9c60a36000-7f9c60a43000 r--s 00083000 08:01 271428                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-collections-3.2.2.jar
+7f9c60a43000-7f9c60a47000 r--s 0002a000 08:01 271418                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/commons-io-2.4.jar
+7f9c60a47000-7f9c60a4b000 r--s 00028000 08:01 271407                     /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/jetty-util-6.1.26.jar
+7f9c60a4b000-7f9c60a6e000 r--s 00308000 08:01 2236889                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/hadoop-hdfs-2.7.3-tests.jar
+7f9c60a6e000-7f9c60ad9000 r--s 0077b000 08:01 2236888                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/hadoop-hdfs-2.7.3.jar
+7f9c60ad9000-7f9c60adb000 r--s 0001d000 08:01 2236890                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/hadoop-hdfs-nfs-2.7.3.jar
+7f9c60adb000-7f9c60ae2000 r--s 0007d000 08:01 2502155                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jetty-6.1.26.jar
+7f9c60ae2000-7f9c60ae4000 r--s 0000e000 08:01 2502147                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-logging-1.1.3.jar
+7f9c60ae4000-7f9c60ae5000 r--s 00003000 08:01 2502152                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/xmlenc-0.52.jar
+7f9c60ae5000-7f9c60b06000 r--s 00172000 08:01 2502149                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/guava-11.0.2.jar
+7f9c60b06000-7f9c60b1e000 r--s 00115000 08:01 2502167                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/xercesImpl-2.9.1.jar
+7f9c60b1e000-7f9c60b30000 r--s 0009d000 08:01 2502160                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jersey-server-1.9.jar
+7f9c60b30000-7f9c60b38000 r--s 00028000 08:01 2502168                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/xml-apis-1.3.04.jar
+7f9c60b38000-7f9c60b3a000 r--s 00009000 08:01 2502151                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-cli-1.2.jar
+7f9c60b3a000-7f9c60b44000 r--s 00066000 08:01 2502157                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jersey-core-1.9.jar
+7f9c60b44000-7f9c60b52000 r--s 000b1000 08:01 2502159                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jackson-mapper-asl-1.9.13.jar
+7f9c60b52000-7f9c60b57000 r--s 00041000 08:01 2502162                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-lang-2.6.jar
+7f9c60b57000-7f9c60b60000 r--s 0006f000 08:01 2502146                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/log4j-1.2.17.jar
+7f9c60b60000-7f9c60b63000 r--s 00006000 08:01 2502150                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jsr305-3.0.0.jar
+7f9c60b63000-7f9c60b64000 r--s 0000a000 08:01 2502161                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/asm-3.2.jar
+7f9c60b64000-7f9c60b66000 r--s 0000d000 08:01 2502145                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-codec-1.4.jar
+7f9c60b66000-7f9c60b69000 r--s 000fd000 08:01 2502169                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar
+7f9c60b69000-7f9c60b86000 r--s 00196000 08:01 2502166                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/netty-all-4.0.23.Final.jar
+7f9c60b86000-7f9c60b8a000 r--s 00035000 08:01 2502158                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jackson-core-asl-1.9.13.jar
+7f9c60b8a000-7f9c60b8c000 r--s 00018000 08:01 2502154                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/servlet-api-2.5.jar
+7f9c60b8c000-7f9c60ba3000 r--s 0010e000 08:01 2502148                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/netty-3.6.2.Final.jar
+7f9c60ba3000-7f9c60bab000 r--s 0007b000 08:01 2502163                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/protobuf-java-2.5.0.jar
+7f9c60bab000-7f9c60bac000 r--s 00005000 08:01 2502165                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-daemon-1.0.13.jar
+7f9c60bac000-7f9c60bb0000 r--s 0002a000 08:01 2502153                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/commons-io-2.4.jar
+7f9c60bb0000-7f9c60bb4000 r--s 00028000 08:01 2502156                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/jetty-util-6.1.26.jar
+7f9c60bb4000-7f9c60bcd000 r--s 00150000 08:01 2502164                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/hdfs/lib/htrace-core-3.1.0-incubating.jar
+7f9c60bcd000-7f9c60bd1000 r--s 00029000 08:01 2236871                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/hadoop-nfs-2.7.3.jar
+7f9c60bd1000-7f9c60c07000 r--s 0031a000 08:01 2236869                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/hadoop-common-2.7.3.jar
+7f9c60c07000-7f9c60c24000 r--s 001b6000 08:01 2236870                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/hadoop-common-2.7.3-tests.jar
+7f9c60c24000-7f9c60c2b000 r--s 0007d000 08:01 2236863                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jetty-6.1.26.jar
+7f9c60c2b000-7f9c60c2f000 r--s 00020000 08:01 2236823                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-digester-1.8.jar
+7f9c60c2f000-7f9c60c31000 r--s 0000e000 08:01 2236857                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-logging-1.1.3.jar
+7f9c60c31000-7f9c60c32000 r--s 00003000 08:01 2236855                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/xmlenc-0.52.jar
+7f9c60c32000-7f9c60c53000 r--s 00172000 08:01 2236851                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/guava-11.0.2.jar
+7f9c60c53000-7f9c60c65000 r--s 00097000 08:01 2236836                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/apacheds-kerberos-codec-2.0.0-M15.jar
+7f9c60c65000-7f9c60c6b000 r--s 00043000 08:01 2236822                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-configuration-1.6.jar
+7f9c60c6b000-7f9c60c6c000 r--s 00009000 08:01 2236850                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/hadoop-annotations-2.7.3.jar
+7f9c60c6c000-7f9c60c6e000 r--s 00006000 08:01 2236829                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/paranamer-2.3.jar
+7f9c60c6e000-7f9c60c72000 r--s 0002f000 08:01 2236825                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-beanutils-core-1.8.0.jar
+7f9c60c72000-7f9c60c74000 r--s 00001000 08:01 2236827                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar
+7f9c60c74000-7f9c60c86000 r--s 0009d000 08:01 2236814                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jersey-server-1.9.jar
+7f9c60c86000-7f9c60c8b000 r--s 0002a000 08:01 2236824                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-beanutils-1.7.0.jar
+7f9c60c8b000-7f9c60c90000 r--s 0003e000 08:01 2236860                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-net-3.1.jar
+7f9c60c90000-7f9c60c92000 r--s 000f2000 08:01 2236830                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/snappy-java-1.0.4.1.jar
+7f9c60c92000-7f9c60c95000 r--s 0002b000 08:01 2236844                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jsch-0.1.42.jar
+7f9c60c95000-7f9c60c97000 r--s 00009000 08:01 2236853                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-cli-1.2.jar
+7f9c60c97000-7f9c60ca0000 r--s 0007b000 08:01 2236817                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jets3t-0.9.0.jar
+7f9c60ca0000-7f9c60caa000 r--s 00066000 08:01 2236866                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jersey-core-1.9.jar
+7f9c60caa000-7f9c60cb2000 r--s 0003b000 08:01 2236845                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/curator-recipes-2.7.1.jar
+7f9c60cb2000-7f9c60cb4000 r--s 0000f000 08:01 2236868                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jettison-1.1.jar
+7f9c60cb4000-7f9c60cc2000 r--s 000b1000 08:01 2236811                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jackson-mapper-asl-1.9.13.jar
+7f9c60cc2000-7f9c60cc3000 r--s 00004000 08:01 2236812                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jackson-jaxrs-1.9.13.jar
+7f9c60cc3000-7f9c60cc5000 r--s 00012000 08:01 2236839                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/api-util-1.0.0-M20.jar
+7f9c60cc5000-7f9c60cca000 r--s 00036000 08:01 2236831                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-compress-1.4.1.jar
+7f9c60cca000-7f9c60ccf000 r--s 00041000 08:01 2236821                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-lang-2.6.jar
+7f9c60ccf000-7f9c60cd8000 r--s 0006f000 08:01 2236816                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/log4j-1.2.17.jar
+7f9c60cd8000-7f9c60cdb000 r--s 00006000 08:01 2236852                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jsr305-3.0.0.jar
+7f9c60cdb000-7f9c60ce7000 r--s 000b6000 08:01 2236840                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/zookeeper-3.4.6.jar
+7f9c60ce7000-7f9c60cf0000 r--s 00061000 08:01 2236818                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/httpclient-4.2.5.jar
+7f9c60cf0000-7f9c60cf3000 r--s 00017000 08:01 2236807                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jaxb-api-2.2.2.jar
+7f9c60cf3000-7f9c60cf4000 r--s 0000a000 08:01 2236815                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/asm-3.2.jar
+7f9c60cf4000-7f9c60cf8000 r--s 00014000 08:01 2236832                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/xz-1.0.jar
+7f9c60cf8000-7f9c60cff000 r--s 00044000 08:01 2236828                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/avro-1.7.4.jar
+7f9c60cff000-7f9c60d01000 r--s 0000d000 08:01 2236858                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-codec-1.4.jar
+7f9c60d01000-7f9c60d05000 r--s 00021000 08:01 2236867                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jersey-json-1.9.jar
+7f9c60d05000-7f9c60d08000 r--s 00016000 08:01 2236865                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jsp-api-2.1.jar
+7f9c60d08000-7f9c60d0e000 r--s 00032000 08:01 2236819                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/httpcore-4.2.5.jar
+7f9c60d0e000-7f9c60d13000 r--s 0002a000 08:01 2236834                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/gson-2.2.4.jar
+7f9c60d13000-7f9c60d19000 r--s 00028000 08:01 2236842                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/curator-framework-2.7.1.jar
+7f9c60d19000-7f9c60d1f000 r--s 00036000 08:01 2236847                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/junit-4.11.jar
+7f9c60d1f000-7f9c60d25000 r--s 00045000 08:01 2236856                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-httpclient-3.1.jar
+7f9c60d25000-7f9c60d27000 r--s 00015000 08:01 2236835                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/hadoop-auth-2.7.3.jar
+7f9c60d27000-7f9c60d2b000 r--s 00035000 08:01 2236810                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jackson-core-asl-1.9.13.jar
+7f9c60d2b000-7f9c60d48000 r--s 0016a000 08:01 2236854                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-math3-3.1.1.jar
+7f9c60d48000-7f9c60d5b000 r--s 000c7000 08:01 2236806                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jaxb-impl-2.2.3-1.jar
+7f9c60d5b000-7f9c60d72000 r--s 0010e000 08:01 2236841                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/netty-3.6.2.Final.jar
+7f9c60d72000-7f9c60d8f000 r--s 0013e000 08:01 2236849                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/mockito-all-1.8.5.jar
+7f9c60d8f000-7f9c60d9c000 r--s 00083000 08:01 2236861                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-collections-3.2.2.jar
+7f9c60d9c000-7f9c60db5000 r--s 00150000 08:01 2236846                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/htrace-core-3.1.0-incubating.jar
+7f9c60db5000-7f9c60db6000 ---p 00000000 00:00 0 
+7f9c60db6000-7f9c60eb6000 rw-p 00000000 00:00 0 
+7f9c60eb6000-7f9c60eb9000 ---p 00000000 00:00 0 
+7f9c60eb9000-7f9c60fb7000 rw-p 00000000 00:00 0 
+7f9c60fb7000-7f9c60fb8000 ---p 00000000 00:00 0 
+7f9c60fb8000-7f9c60fbb000 ---p 00000000 00:00 0 
+7f9c60fbb000-7f9c610b8000 rw-p 00000000 00:00 0 
+7f9c610b8000-7f9c610b9000 ---p 00000000 00:00 0 
+7f9c610b9000-7f9c610bc000 ---p 00000000 00:00 0 
+7f9c610bc000-7f9c611b9000 rw-p 00000000 00:00 0 
+7f9c611b9000-7f9c611ba000 ---p 00000000 00:00 0 
+7f9c611ba000-7f9c611bd000 ---p 00000000 00:00 0 
+7f9c611bd000-7f9c612ba000 rw-p 00000000 00:00 0 
+7f9c612ba000-7f9c612bd000 ---p 00000000 00:00 0 
+7f9c612bd000-7f9c613bb000 rw-p 00000000 00:00 0 
+7f9c613bb000-7f9c61d8a000 r--p 00000000 08:01 2628292                    /usr/lib/locale/locale-archive
+7f9c61d8a000-7f9c61d8d000 ---p 00000000 00:00 0 
+7f9c61d8d000-7f9c61e8b000 rw-p 00000000 00:00 0 
+7f9c61e8b000-7f9c61e8e000 ---p 00000000 00:00 0 
+7f9c61e8e000-7f9c61f8c000 rw-p 00000000 00:00 0 
+7f9c61f8c000-7f9c61f8d000 ---p 00000000 00:00 0 
+7f9c61f8d000-7f9c63626000 rw-p 00000000 00:00 0 
+7f9c63626000-7f9c63800000 r--s 03d88000 08:01 1708759                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
+7f9c63800000-7f9c64000000 rw-p 00000000 00:00 0 
+7f9c64000000-7f9c6425e000 rw-p 00000000 00:00 0 
+7f9c6425e000-7f9c68000000 ---p 00000000 00:00 0 
+7f9c68000000-7f9c68002000 r--s 00004000 08:01 2236808                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/stax-api-1.0-2.jar
+7f9c68002000-7f9c68004000 r--s 00009000 08:01 2236848                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/hamcrest-core-1.3.jar
+7f9c68004000-7f9c6820c000 rw-p 00000000 00:00 0 
+7f9c6820c000-7f9c6820d000 ---p 00000000 00:00 0 
+7f9c6820d000-7f9c6830d000 rw-p 00000000 00:00 0 
+7f9c6830d000-7f9c6830e000 ---p 00000000 00:00 0 
+7f9c6830e000-7f9c6840e000 rw-p 00000000 00:00 0 
+7f9c6840e000-7f9c6840f000 ---p 00000000 00:00 0 
+7f9c6840f000-7f9c6850f000 rw-p 00000000 00:00 0 
+7f9c6850f000-7f9c68510000 ---p 00000000 00:00 0 
+7f9c68510000-7f9c68610000 rw-p 00000000 00:00 0 
+7f9c68610000-7f9c68611000 ---p 00000000 00:00 0 
+7f9c68611000-7f9c68711000 rw-p 00000000 00:00 0 
+7f9c68711000-7f9c68712000 ---p 00000000 00:00 0 
+7f9c68712000-7f9c68823000 rw-p 00000000 00:00 0 
+7f9c68823000-7f9c68bd2000 ---p 00000000 00:00 0 
+7f9c68bd2000-7f9c69002000 rwxp 00000000 00:00 0 
+7f9c69002000-7f9c77bd2000 ---p 00000000 00:00 0 
+7f9c77bd2000-7f9c77bed000 r-xp 00000000 08:01 1709033                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libzip.so
+7f9c77bed000-7f9c77dec000 ---p 0001b000 08:01 1709033                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libzip.so
+7f9c77dec000-7f9c77ded000 r--p 0001a000 08:01 1709033                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libzip.so
+7f9c77ded000-7f9c77dee000 rw-p 0001b000 08:01 1709033                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libzip.so
+7f9c77dee000-7f9c77df9000 r-xp 00000000 08:01 1447453                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f9c77df9000-7f9c77ff8000 ---p 0000b000 08:01 1447453                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f9c77ff8000-7f9c77ff9000 r--p 0000a000 08:01 1447453                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f9c77ff9000-7f9c77ffa000 rw-p 0000b000 08:01 1447453                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7f9c77ffa000-7f9c78000000 rw-p 00000000 00:00 0 
+7f9c78000000-7f9c78e05000 rw-p 00000000 00:00 0 
+7f9c78e05000-7f9c7c000000 ---p 00000000 00:00 0 
+7f9c7c000000-7f9c7c001000 r--s 00006000 08:01 2236813                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jackson-xc-1.9.13.jar
+7f9c7c001000-7f9c7c002000 r--s 00007000 08:01 2236826                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/slf4j-api-1.7.10.jar
+7f9c7c002000-7f9c7c004000 r--s 00018000 08:01 2236862                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/servlet-api-2.5.jar
+7f9c7c004000-7f9c7c006000 r--s 0000e000 08:01 2236809                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/activation-1.1.jar
+7f9c7c006000-7f9c7c008000 r--s 0000f000 08:01 2236843                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/curator-client-2.7.1.jar
+7f9c7c008000-7f9c7c0a4000 rw-p 00000000 00:00 0 
+7f9c7c0a4000-7f9c7c12e000 ---p 00000000 00:00 0 
+7f9c7c12e000-7f9c7c14b000 rw-p 00000000 00:00 0 
+7f9c7c14b000-7f9c7c184000 ---p 00000000 00:00 0 
+7f9c7c184000-7f9c7c185000 rw-p 00000000 00:00 0 
+7f9c7c185000-7f9c7c19c000 r-xp 00000000 08:01 1447447                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f9c7c19c000-7f9c7c39b000 ---p 00017000 08:01 1447447                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f9c7c39b000-7f9c7c39c000 r--p 00016000 08:01 1447447                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f9c7c39c000-7f9c7c39d000 rw-p 00017000 08:01 1447447                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7f9c7c39d000-7f9c7c39f000 rw-p 00000000 00:00 0 
+7f9c7c39f000-7f9c7c3aa000 r-xp 00000000 08:01 1447464                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f9c7c3aa000-7f9c7c5a9000 ---p 0000b000 08:01 1447464                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f9c7c5a9000-7f9c7c5aa000 r--p 0000a000 08:01 1447464                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f9c7c5aa000-7f9c7c5ab000 rw-p 0000b000 08:01 1447464                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7f9c7c5ab000-7f9c7c5b3000 r-xp 00000000 08:01 1447449                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f9c7c5b3000-7f9c7c7b3000 ---p 00008000 08:01 1447449                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f9c7c7b3000-7f9c7c7b4000 r--p 00008000 08:01 1447449                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f9c7c7b4000-7f9c7c7b5000 rw-p 00009000 08:01 1447449                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7f9c7c7b5000-7f9c7c7e1000 r-xp 00000000 08:01 1709024                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjava.so
+7f9c7c7e1000-7f9c7c9e1000 ---p 0002c000 08:01 1709024                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjava.so
+7f9c7c9e1000-7f9c7c9e2000 r--p 0002c000 08:01 1709024                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjava.so
+7f9c7c9e2000-7f9c7c9e4000 rw-p 0002d000 08:01 1709024                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libjava.so
+7f9c7c9e4000-7f9c7c9f1000 r-xp 00000000 08:01 1709015                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libverify.so
+7f9c7c9f1000-7f9c7cbf0000 ---p 0000d000 08:01 1709015                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libverify.so
+7f9c7cbf0000-7f9c7cbf2000 r--p 0000c000 08:01 1709015                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libverify.so
+7f9c7cbf2000-7f9c7cbf3000 rw-p 0000e000 08:01 1709015                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/libverify.so
+7f9c7cbf3000-7f9c7cbfa000 r-xp 00000000 08:01 1447504                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f9c7cbfa000-7f9c7cdf9000 ---p 00007000 08:01 1447504                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f9c7cdf9000-7f9c7cdfa000 r--p 00006000 08:01 1447504                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f9c7cdfa000-7f9c7cdfb000 rw-p 00007000 08:01 1447504                    /lib/x86_64-linux-gnu/librt-2.27.so
+7f9c7cdfb000-7f9c7cf98000 r-xp 00000000 08:01 1447426                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f9c7cf98000-7f9c7d197000 ---p 0019d000 08:01 1447426                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f9c7d197000-7f9c7d198000 r--p 0019c000 08:01 1447426                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f9c7d198000-7f9c7d199000 rw-p 0019d000 08:01 1447426                    /lib/x86_64-linux-gnu/libm-2.27.so
+7f9c7d199000-7f9c7de81000 r-xp 00000000 08:01 1709031                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/server/libjvm.so
+7f9c7de81000-7f9c7e080000 ---p 00ce8000 08:01 1709031                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/server/libjvm.so
+7f9c7e080000-7f9c7e116000 r--p 00ce7000 08:01 1709031                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/server/libjvm.so
+7f9c7e116000-7f9c7e147000 rw-p 00d7d000 08:01 1709031                    /home/raptor/Softwares/jdk1.8.0_221/jre/lib/amd64/server/libjvm.so
+7f9c7e147000-7f9c7e182000 rw-p 00000000 00:00 0 
+7f9c7e182000-7f9c7e369000 r-xp 00000000 08:01 1447363                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f9c7e369000-7f9c7e569000 ---p 001e7000 08:01 1447363                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f9c7e569000-7f9c7e56d000 r--p 001e7000 08:01 1447363                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f9c7e56d000-7f9c7e56f000 rw-p 001eb000 08:01 1447363                    /lib/x86_64-linux-gnu/libc-2.27.so
+7f9c7e56f000-7f9c7e573000 rw-p 00000000 00:00 0 
+7f9c7e573000-7f9c7e576000 r-xp 00000000 08:01 1447386                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f9c7e576000-7f9c7e775000 ---p 00003000 08:01 1447386                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f9c7e775000-7f9c7e776000 r--p 00002000 08:01 1447386                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f9c7e776000-7f9c7e777000 rw-p 00003000 08:01 1447386                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7f9c7e777000-7f9c7e78e000 r-xp 00000000 08:01 1708010                    /home/raptor/Softwares/jdk1.8.0_221/lib/amd64/jli/libjli.so
+7f9c7e78e000-7f9c7e98d000 ---p 00017000 08:01 1708010                    /home/raptor/Softwares/jdk1.8.0_221/lib/amd64/jli/libjli.so
+7f9c7e98d000-7f9c7e98e000 r--p 00016000 08:01 1708010                    /home/raptor/Softwares/jdk1.8.0_221/lib/amd64/jli/libjli.so
+7f9c7e98e000-7f9c7e98f000 rw-p 00017000 08:01 1708010                    /home/raptor/Softwares/jdk1.8.0_221/lib/amd64/jli/libjli.so
+7f9c7e98f000-7f9c7e9a9000 r-xp 00000000 08:01 1447496                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f9c7e9a9000-7f9c7eba8000 ---p 0001a000 08:01 1447496                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f9c7eba8000-7f9c7eba9000 r--p 00019000 08:01 1447496                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f9c7eba9000-7f9c7ebaa000 rw-p 0001a000 08:01 1447496                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7f9c7ebaa000-7f9c7ebae000 rw-p 00000000 00:00 0 
+7f9c7ebae000-7f9c7ebd5000 r-xp 00000000 08:01 1447335                    /lib/x86_64-linux-gnu/ld-2.27.so
+7f9c7ebd5000-7f9c7ebd6000 r--s 00004000 08:01 2236820                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/java-xmlbuilder-0.4.jar
+7f9c7ebd6000-7f9c7ebd8000 r--s 00003000 08:01 2236838                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/api-asn1-api-1.0.0-M20.jar
+7f9c7ebd8000-7f9c7ebe0000 r--s 0007b000 08:01 2236833                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/protobuf-java-2.5.0.jar
+7f9c7ebe0000-7f9c7ebe4000 r--s 0002a000 08:01 2236859                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/commons-io-2.4.jar
+7f9c7ebe4000-7f9c7ebe8000 r--s 00028000 08:01 2236864                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/jetty-util-6.1.26.jar
+7f9c7ebe8000-7f9c7ec30000 rw-p 00000000 00:00 0 
+7f9c7ec30000-7f9c7ecbb000 ---p 00000000 00:00 0 
+7f9c7ecbb000-7f9c7ecbc000 ---p 00000000 00:00 0 
+7f9c7ecbc000-7f9c7ecbf000 ---p 00000000 00:00 0 
+7f9c7ecbf000-7f9c7edbe000 rw-p 00000000 00:00 0 
+7f9c7edbe000-7f9c7edbf000 r--s 0000a000 08:01 2236837                    /home/raptor/Softwares/hadoop-2.7.3/share/hadoop/common/lib/apacheds-i18n-2.0.0-M15.jar
+7f9c7edbf000-7f9c7edc9000 rw-p 00000000 00:00 0 
+7f9c7edc9000-7f9c7edd1000 rw-s 00000000 08:01 1454936                    /tmp/hsperfdata_raptor/20668
+7f9c7edd1000-7f9c7edd2000 rw-p 00000000 00:00 0 
+7f9c7edd2000-7f9c7edd3000 ---p 00000000 00:00 0 
+7f9c7edd3000-7f9c7edd5000 rw-p 00000000 00:00 0 
+7f9c7edd5000-7f9c7edd6000 r--p 00027000 08:01 1447335                    /lib/x86_64-linux-gnu/ld-2.27.so
+7f9c7edd6000-7f9c7edd7000 rw-p 00028000 08:01 1447335                    /lib/x86_64-linux-gnu/ld-2.27.so
+7f9c7edd7000-7f9c7edd8000 rw-p 00000000 00:00 0 
+7ffe904cc000-7ffe904ee000 rw-p 00000000 00:00 0                          [stack]
+7ffe90540000-7ffe90543000 r--p 00000000 00:00 0                          [vvar]
+7ffe90543000-7ffe90545000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Dproc_dfs -Xmx1000m -Djava.library.path=/home/raptor/Softwares/hadoop-2.7.3//lib -Djava.net.preferIPv4Stack=true -Dhadoop.log.dir=/home/raptor/Softwares/hadoop-2.7.3/logs -Dhadoop.log.file=hadoop.log -Dhadoop.home.dir=/home/raptor/Softwares/hadoop-2.7.3 -Dhadoop.id.str=raptor -Dhadoop.root.logger=INFO,console -Dhadoop.policy.file=hadoop-policy.xml -Djava.net.preferIPv4Stack=true -Xmx512m -Dhadoop.security.logger=INFO,NullAppender 
+java_command: org.apache.hadoop.fs.FsShell -ls /user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze_delta/
+java_class_path (initial): /home/raptor/Softwares/hadoop-2.7.3/etc/hadoop/:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/htrace-core-3.1.0-incubating.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/jetty-util-6.1.26.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/commons-io-2.4.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/commons-collections-3.2.2.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/mockito-all-1.8.5.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/protobuf-java-2.5.0.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/api-asn1-api-1.0.0-M20.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/netty-3.6.2.Final.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/curator-client-2.7.1.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/apacheds-i18n-2.0.0-M15.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/java-xmlbuilder-0.4.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/activation-1.1.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/jaxb-impl-2.2.3-1.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/commons-math3-3.1.1.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/servlet-api-2.5.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/slf4j-api-1.7.10.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/hamcrest-core-1.3.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/stax-api-1.0-2.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/jackson-xc-1.9.13.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/jackson-core-asl-1.9.13.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/hadoop-auth-2.7.3.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/commons-httpclient-3.1.jar:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/li
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/home/raptor/Softwares/jdk1.8.0_221
+JRE_HOME=/home/raptor/Softwares/jdk1.8.0_221/jre
+CLASSPATH=/home/raptor/Softwares/hadoop-2.7.3/etc/hadoop/:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/lib/*:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/common/*:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/hdfs:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/hdfs/lib/*:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/hdfs/*:/home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/lib/*:/home/raptor/Softwares/hadoop-2.7.3/share/hadoop/yarn/*:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/mapreduce/lib/*:/home/raptor/Softwares/hadoop-2.7.3//share/hadoop/mapreduce/*:/home/raptor/Softwares/hadoop-2.7.3//contrib/capacity-scheduler/*.jar
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/raptor/Softwares/jdk1.8.0_221//bin:/home/raptor/Softwares/scala-2.11.8//bin:/home/raptor/Softwares/spark-2.4.0-bin-hadoop2.7//bin:/home/raptor/Softwares/spark-2.4.0-bin-hadoop2.7//sbin:/home/raptor/Softwares/apache-maven-3.6.0//bin:/home/raptor/Softwares/gradle-5.2.1//bin:/home/raptor/Softwares/apache-zookeeper-3.5.5//bin:/home/raptor/Softwares/flink-1.9.0//bin:/home/raptor/Softwares/kafka_2.12-2.3.1//bin:/home/raptor/Softwares/apache-hive-2.1.1-bin//bin:/home/raptor/Softwares/hadoop-2.7.3//bin:/home/raptor/Softwares/hbase-1.4.12//bin:/home/raptor/Softwares/Python-3.5.9/
+USERNAME=raptor
+LD_LIBRARY_PATH=/home/raptor/Softwares/hadoop-2.7.3//lib/native
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xad3d90], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xad3d90], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x90b8b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x90b8b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x90b8b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x90b8b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x90b780], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x90bda0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x90bda0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x90bda0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x90bda0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.3 LTS"
+
+uname:Linux 4.15.0-74-generic #84-Ubuntu SMP Thu Dec 19 08:06:28 UTC 2019 x86_64
+libc:glibc 2.27 NPTL 2.27 
+rlimit: STACK 8192k, CORE 0k, NPROC 23664, NOFILE 4096, AS infinity
+load average:0.69 1.09 1.82
+
+/proc/meminfo:
+MemTotal:        6102916 kB
+MemFree:          107032 kB
+MemAvailable:       3516 kB
+Buffers:             492 kB
+Cached:            32252 kB
+SwapCached:        27320 kB
+Active:          4962536 kB
+Inactive:         713292 kB
+Active(anon):    4959532 kB
+Inactive(anon):   708468 kB
+Active(file):       3004 kB
+Inactive(file):     4824 kB
+Unevictable:          16 kB
+Mlocked:              16 kB
+SwapTotal:       2097148 kB
+SwapFree:              0 kB
+Dirty:                72 kB
+Writeback:             0 kB
+AnonPages:       5616824 kB
+Mapped:            21024 kB
+Shmem:             24396 kB
+Slab:              93312 kB
+SReclaimable:      38536 kB
+SUnreclaim:        54776 kB
+KernelStack:       23968 kB
+PageTables:        67728 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     5148604 kB
+Committed_AS:   15450972 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      186304 kB
+DirectMap2M:     6105088 kB
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-5
+cpu_memory_nodes: 0
+active_processor_count: 6
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 5803130880
+memory_max_usage_in_bytes: 42582016
+
+
+CPU:total 6 (initial active 6) (6 cores per cpu, 1 threads per core) family 6 model 158 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, 3dnowpref, lzcnt, tsc, tscinvbit
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 158
+model name	: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+stepping	: 10
+cpu MHz		: 2208.002
+cache size	: 9216 KB
+physical id	: 0
+siblings	: 6
+core id		: 0
+cpu cores	: 6
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4416.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 158
+model name	: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+stepping	: 10
+cpu MHz		: 2208.002
+cache size	: 9216 KB
+physical id	: 0
+siblings	: 6
+core id		: 1
+cpu cores	: 6
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4416.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 158
+model name	: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+stepping	: 10
+cpu MHz		: 2208.002
+cache size	: 9216 KB
+physical id	: 0
+siblings	: 6
+core id		: 2
+cpu cores	: 6
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4416.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 158
+model name	: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+stepping	: 10
+cpu MHz		: 2208.002
+cache size	: 9216 KB
+physical id	: 0
+siblings	: 6
+core id		: 3
+cpu cores	: 6
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4416.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 158
+model name	: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+stepping	: 10
+cpu MHz		: 2208.002
+cache size	: 9216 KB
+physical id	: 0
+siblings	: 6
+core id		: 4
+cpu cores	: 6
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4416.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 158
+model name	: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+stepping	: 10
+cpu MHz		: 2208.002
+cache size	: 9216 KB
+physical id	: 0
+siblings	: 6
+core id		: 5
+cpu cores	: 6
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips	: 4416.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 6102916k(106552k free), swap 2097148k(0k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.221-b11) for linux-amd64 JRE (1.8.0_221-b11), built on Jul  4 2019 04:27:00 by "java_re" with gcc 7.3.0
+
+time: Tue Jan 21 11:05:31 2020
+timezone: IST
+elapsed time: 2 seconds (0d 0h 0m 2s)
+
