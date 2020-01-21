@@ -9,7 +9,7 @@ import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 object randomMsgProducer {
   val listOfChars = ('a' to 'z') ++ ('A' to 'Z')
 
-  def randomRecordGenerator(topicName: String, kafkaProducer: KafkaProducer[String, String], key: String, valueCharLength: Int,partitionValue:String): Unit = kafkaProducer.send(new ProducerRecord[String, String](topicName, key, randomStringGenerator(valueCharLength)+"|"+partitionValue))
+  def randomRecordGenerator(topicName: String, kafkaProducer: KafkaProducer[String, String], key: String, valueCharLength: Int,partitionValue:String): Unit = kafkaProducer.send(new ProducerRecord[String, String](topicName, key, randomStringGenerator(valueCharLength)+"~"+partitionValue))
 
   def randomStringGenerator(tempStringLength: Int) = {
     var tempString: String = null
@@ -29,7 +29,7 @@ object randomMsgProducer {
         val valPart=arg.split("=",2)(1)
         inputMap.put(keyPart,valPart)
       }
-    val key=inputMap("key")
+    val key=inputMap("key") // Tyre(3,4,5,6) or SCS (0,1,2) or any (7,8,9) -- total 10 partitions
     val messageLength=inputMap("messageLength").toInt
     val numOfRecords=inputMap("numOfRecords").toInt
   //  val topicName ="CarSensor"
