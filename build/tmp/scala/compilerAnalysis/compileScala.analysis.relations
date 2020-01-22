@@ -78,7 +78,6 @@ binary dependencies:
    src/main/scala/com/test/AtomicityUsingMysql/randomMsgProducer.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.kafka/kafka-clients/2.3.1/21664b0318d201ec412f9b02357b07ba94009c87/kafka-clients-2.3.1.jar
    src/main/scala/com/test/AtomicityUsingMysql/randomMsgProducer.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.12.10/3509860bc2e5b3da001ed45aca94ffbe5694dbda/scala-library-2.12.10.jar
    src/main/scala/com/test/AtomicityUsingMysql/randomMsgProducer.scala -> /home/raptor/Softwares/jdk1.8.0_221/jre/lib/rt.jar
-   src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/io.delta/delta-core_2.12/0.5.0/3fc3c20d5c4e6978f912b3875ec10176e8d9bfc0/delta-core_2.12-0.5.0.jar
    src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-catalyst_2.12/2.4.4/50172ab29cae575c85216348cf22a544f7d7205/spark-catalyst_2.12-2.4.4.jar
    src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-core_2.12/2.4.4/6e606150eb038cccf319869de3c0cd32e6f9d2ff/spark-core_2.12-2.4.4.jar
    src/main/scala/com/test/AtomicityUsingMysql/testScalaSparkKafkaRead.scala -> /home/raptor/.gradle/caches/modules-2/files-2.1/org.apache.spark/spark-sql_2.12/2.4.4/ec1d629508b27dd126a3b24ce8af91e72778e16f/spark-sql_2.12-2.4.4.jar

@@ -44,7 +44,7 @@ object deletingTopic {
     val zkKafkaClient=getKafkaZookeeperClientConnection(zookeeperIp,isSecure,sessionTimeOutMilliSecs,connectionTimeOutMilliSecs,maxInFlightRequests,time,metricGroup,metricType)
     val adminZKClientConnection=getAdminZookeeperClientConnection(zkKafkaClient)
     deleteTopic(adminZKClientConnection,topicName)
-    checkIfTopicExists(zkKafkaClient,topicName)
+    checkIfTopicExists(zkKafkaClient,topicName) match {case false => println("Topic deleted in cluster"); case _ =>  println("Topic not deleted in cluster") }
   }
 
 }
