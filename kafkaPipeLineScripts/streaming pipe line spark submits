@@ -1,0 +1,46 @@
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+
+
+SCS,Tyre,TCS,ERS,DRS
+
+// creating topic plus msg
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=createTopic.sh,randomMsgProducer.sh~SCS~5~2019-12-20,randomMsgProducer.sh~Tyre~5~2019-12-20,randomMsgProducer.sh~TCS~5~2019-12-20,randomMsgProducer.sh~ERS~5~2019-12-20,randomMsgProducer.sh~DRS~5~2019-12-20,randomMsgProducer.sh~SCS~5~2019-12-21,randomMsgProducer.sh~Tyre~5~2019-12-21,randomMsgProducer.sh~TCS~5~2019-12-21,randomMsgProducer.sh~ERS~5~2019-12-21,randomMsgProducer.sh~DRS~5~2019-12-21
+
+
+
+// topic deletion
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=deleteTopic.sh
+
+// msg alone
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~2019-12-20,randomMsgProducer.sh~Tyre~5~2019-12-20,randomMsgProducer.sh~TCS~5~2019-12-20,randomMsgProducer.sh~ERS~5~2019-12-20,randomMsgProducer.sh~DRS~5~2019-12-20,randomMsgProducer.sh~SCS~5~2019-12-21,randomMsgProducer.sh~Tyre~5~2019-12-21,randomMsgProducer.sh~TCS~5~2019-12-21,randomMsgProducer.sh~ERS~5~2019-12-21,randomMsgProducer.sh~DRS~5~2019-12-21
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~2019-12-23,randomMsgProducer.sh~Tyre~5~2019-12-23,randomMsgProducer.sh~TCS~5~2019-12-23,randomMsgProducer.sh~ERS~5~2019-12-23,randomMsgProducer.sh~DRS~5~2019-12-23
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~2019-12-24,randomMsgProducer.sh~Tyre~5~2019-12-24,randomMsgProducer.sh~TCS~5~2019-12-24,randomMsgProducer.sh~ERS~5~2019-12-24,randomMsgProducer.sh~DRS~5~2019-12-24
+
+
+// reading job
+
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=kafkaToDumpPath.sh 
+
+
+// kafka dump to bronze.. using 240
+
+cd /home/raptor/IdeaProjects/SparkLearning/build/libs/
+
+spark-submit --class org.controller.deltaLakeEG.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 SparkLearning-1.0-SNAPSHOT.jar shellScriptsWithParam=pushingDataFromDumpToBronze.sh~2019-12-20,pushingDataFromDumpToBronze.sh~2019-12-21,pushingDataFromDumpToBronze.sh~2019-12-22,pushingDataFromDumpToBronze.sh~2019-12-23,pushingDataFromDumpToBronze.sh~2019-12-24
+
+

@@ -112,5 +112,12 @@ spark-submit --class com.test.AtomicityUsingMysql.randomMsgProducer  --num-execu
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
 
-spark-submit --class com.test.AtomicityUsingMysql.testScalaSparkKafkaRead  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 --packages org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.12:2.3.1,org.apache.spark:spark-sql-kafka-0-10_2.12:2.4.4 KafkaGradleTest-1.0-SNAPSHOT-all.jar bootstrapServers=localhost:9092,localhost:9093,localhost:9094 topicName=CarSensor keySerializer=org.apache.kafka.common.serialization.StringSerializer valueSerializer=org.apache.kafka.common.serialization.StringSerializer checkPointPath=hdfs://localhost/user/raptor/kafka/temp/checkpoint/ bronzeTablePath=hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze
+spark-submit --class com.test.AtomicityUsingMysql.testScalaSparkKafkaRead  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 --packages org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.12:2.3.1,org.apache.spark:spark-sql-kafka-0-10_2.12:2.4.4 KafkaGradleTest-1.0-SNAPSHOT-all.jar bootstrapServers=localhost:9092,localhost:9093,localhost:9094 topicName=CarSensor keySerializer=org.apache.kafka.common.serialization.StringSerializer valueSerializer=org.apache.kafka.common.serialization.StringSerializer checkPointPath=hdfs://localhost/user/raptor/kafka/temp/checkpoint/ bronzeTablePath=hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorStreamedData streamTimeOutSeconds=50000
+
+// reading data for batch job putting it into Delta table.run using spark 240
+
+cd /home/raptor/IdeaProjects/SparkLearning/build/libs/
+
+spark-submit --class org.controller.deltaLakeEG.pushingStreamedDataToDeltaBronze  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 --packages io.delta:delta-core_2.11:0.5.0 SparkLearning-1.0-SNAPSHOT.jar basePath=hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/ sourceTable=carSensorStreamedData datePartitionValue=2019-12-20 bronzeTable=carSensorBronze overWriteOrAppend=append
+
 

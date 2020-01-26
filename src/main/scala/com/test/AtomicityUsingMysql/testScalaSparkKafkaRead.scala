@@ -24,8 +24,9 @@ object testScalaSparkKafkaRead extends SparkOpener{
     val topicName =inputMap("topicName")
     val keySerializer=inputMap("keySerializer")
     val valueSerializer=inputMap("valueSerializer")
+    val streamTimeOutMilliSeconds=inputMap("streamTimeOutSeconds").toInt
     val checkPointPath=inputMap("checkPointPath")//"hdfs://localhost/user/raptor/kafka/temp/checkpoint/"
-    val bronzeTablePath=inputMap("bronzeTablePath")//"hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze"
+    val bronzeTablePath=inputMap("bronzeTablePath")//"hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorStreamedData"
     val df = spark.readStream.format(sourceKafka).option("kafka.bootstrap.servers", bootstrapServers).option("value.deserializer",valueSerializer).option("key.deserializer",keySerializer).option("startingOffsets", "earliest").option("subscribe", topicName).load.selectExpr("*","split(value,'~') as valueSplitted").drop("value").selectExpr("offset", "topic", "timestamp", "valueSplitted[0] as value", "valueSplitted[1] as date", "timestampType", "partition", "key")
    //    val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("startingOffsets", "earliest").option("subscribe", "CarSensor").load()  //
     println("-----------------------------------------><----------------------------------------------")
@@ -36,8 +37,8 @@ object testScalaSparkKafkaRead extends SparkOpener{
     //hdfs
     //val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("subscribe", "CarSensor").option("startingOffsets", "earliest").load()
        val query = df.writeStream.outputMode("append").option("checkpointLocation",checkPointPath).option("path", bronzeTablePath).partitionBy("date", "key", "partition").start()
-       query.awaitTermination(10000)
-         //  query.awaitTermination()
+       //query.awaitTermination(streamTimeOutMilliSeconds)
+      query.awaitTermination()
       spark.close
        }
 // backup val query = df.withColumn("date",lit("2019-12-27")).writeStream.outputMode("append").format("parquet").option("checkpointLocation","hdfs://localhost/user/raptor/kafka/temp/checkpoint").option("path","hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key","date","partition").start()
