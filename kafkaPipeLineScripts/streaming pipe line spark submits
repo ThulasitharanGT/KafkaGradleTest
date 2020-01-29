@@ -43,4 +43,16 @@ cd /home/raptor/IdeaProjects/SparkLearning/build/libs/
 
 spark-submit --class org.controller.deltaLakeEG.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 SparkLearning-1.0-SNAPSHOT.jar shellScriptsWithParam=pushingDataFromDumpToBronze.sh~2019-12-20,pushingDataFromDumpToBronze.sh~2019-12-21,pushingDataFromDumpToBronze.sh~2019-12-22,pushingDataFromDumpToBronze.sh~2019-12-23,pushingDataFromDumpToBronze.sh~2019-12-24
 
+---------------------
 
+for 240 spark --- works for streaming queries ty as a project
+
+spark-shell --packages org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.11:2.3.1,org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.0
+
+// writing -- kafka producer pushes data to a topic. below query hits that
+val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("startingOffsets", "earliest").option("subscribe", "CarSensor").load()
+val query = df.writeStream.outputMode("append").format("delta").option("checkpointLocation","file:///home/raptor/checkpointStream/checkpoint").option("path","file:///home/raptor/output/kafkaTableDump/carSensorBronze").partitionBy("key").start()
+
+// reading
+val queryStream= spark.readStream.format("delta").load("file:///home/raptor/output/kafkaTableDump/carSensorBronze").selectExpr("*","split(value,'~') as valueSplitted").drop("value").selectExpr("offset", "topic", "timestamp", "cast(valueSplitted[0] as string)as value", "cast(valueSplitted[1] as string) as date", "timestampType", "partition", "key")
+val queryStreamDF=queryStream.writeStream.outputMode("append").format("console").option("checkpointLocation","file:///home/raptor/checkpointStream/checkpoint1").option("path","file:///home/raptor/output/kafkaTableDump/carSensorBronze1").start()

@@ -1,0 +1,5 @@
+creating a topic with 10 partition.
+streaming random record's to the topic appending date with the record.
+
+reading record's using spark streaming and dumping it into a parquet table
+Reading from that parquet table and then inserting it into bronze(Delta using spark 240) -- 244 does'nt support delta table due to some jar issue. (for required partition alone.)
