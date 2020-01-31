@@ -2,7 +2,7 @@ jarName=KafkaGradleTest-1.0-SNAPSHOT-all.jar
 #key=SCS 
 #messageLength=5 
 numOfRecords=100 
-topicName=CarSensor
+#topicName=CarSensor
 keySerializer=org.apache.kafka.common.serialization.StringSerializer 
 valueSerializer=org.apache.kafka.common.serialization.StringSerializer 
 bootStrapServer=localhost:9092,localhost:9093,localhost:9094 
@@ -12,11 +12,11 @@ bootStrapServer=localhost:9092,localhost:9093,localhost:9094
 key=$1
 messageLength=$2
 #numOfRecords=$4
-#topicName=$5
+topicName=$3
 #keySerializer=$6
 #valueSerializer=$7
 #bootStrapServer=$8
-partitionValue=$3
+partitionValue=$4
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
 

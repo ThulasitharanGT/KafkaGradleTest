@@ -1,7 +1,7 @@
 jarName=KafkaGradleTest-1.0-SNAPSHOT-all.jar
-topicName=CarSensor
-topicPartitions=10
-topicReplicationFactor=3 
+#topicName=CarSensor
+#topicPartitions=10
+#topicReplicationFactor=3
 zookeeperIp=localhost:3039 
 isSecure=false 
 sessionTimeOutMilliSecs=200000 
@@ -11,9 +11,9 @@ metricGroup=myGroup
 metricType=myType
 
 #jarName=$1
-#topicName=$2
-#topicPartitions=$3
-#topicReplicationFactor=$4
+topicName=$1
+topicPartitions=$2
+topicReplicationFactor=$3
 #zookeeperIp=$5 
 #isSecure=$6 
 #sessionTimeOutMilliSecs=$7 

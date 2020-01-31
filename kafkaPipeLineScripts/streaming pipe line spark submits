@@ -7,7 +7,7 @@ SCS,Tyre,TCS,ERS,DRS
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
 
-spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=createTopic.sh,randomMsgProducer.sh~SCS~5~2019-12-20,randomMsgProducer.sh~Tyre~5~2019-12-20,randomMsgProducer.sh~TCS~5~2019-12-20,randomMsgProducer.sh~ERS~5~2019-12-20,randomMsgProducer.sh~DRS~5~2019-12-20,randomMsgProducer.sh~SCS~5~2019-12-21,randomMsgProducer.sh~Tyre~5~2019-12-21,randomMsgProducer.sh~TCS~5~2019-12-21,randomMsgProducer.sh~ERS~5~2019-12-21,randomMsgProducer.sh~DRS~5~2019-12-21
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=createTopic.sh~CarSensor~10~3,randomMsgProducer.sh~SCS~5~CarSensor~2019-12-20,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-20,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-20,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-20,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-20,randomMsgProducer.sh~SCS~5~CarSensor~2019-12-21,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-21,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-21,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-21,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-21
 
 
 
@@ -15,20 +15,19 @@ spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreami
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
 
-spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=deleteTopic.sh
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=deleteTopic.sh~CarSensor
 
 // msg alone
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
 
-spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~2019-12-20,randomMsgProducer.sh~Tyre~5~2019-12-20,randomMsgProducer.sh~TCS~5~2019-12-20,randomMsgProducer.sh~ERS~5~2019-12-20,randomMsgProducer.sh~DRS~5~2019-12-20,randomMsgProducer.sh~SCS~5~2019-12-21,randomMsgProducer.sh~Tyre~5~2019-12-21,randomMsgProducer.sh~TCS~5~2019-12-21,randomMsgProducer.sh~ERS~5~2019-12-21,randomMsgProducer.sh~DRS~5~2019-12-21
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~CarSensor~2019-12-20,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-20,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-20,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-20,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-20,randomMsgProducer.sh~SCS~5~CarSensor~2019-12-21,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-21,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-21,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-21,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-21
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
-spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~2019-12-23,randomMsgProducer.sh~Tyre~5~2019-12-23,randomMsgProducer.sh~TCS~5~2019-12-23,randomMsgProducer.sh~ERS~5~2019-12-23,randomMsgProducer.sh~DRS~5~2019-12-23
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~CarSensor~2019-12-23,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-23,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-23,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-23,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-23
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
-spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~2019-12-24,randomMsgProducer.sh~Tyre~5~2019-12-24,randomMsgProducer.sh~TCS~5~2019-12-24,randomMsgProducer.sh~ERS~5~2019-12-24,randomMsgProducer.sh~DRS~5~2019-12-24
-
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~CarSensor~2019-12-24,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-24,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-24,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-24,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-24
 
 // reading job
 

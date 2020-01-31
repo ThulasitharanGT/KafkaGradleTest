@@ -1,5 +1,5 @@
 jarName=KafkaGradleTest-1.0-SNAPSHOT-all.jar
-topicName=CarSensor
+#topicName=CarSensor
 zookeeperIp=localhost:3039 
 isSecure=false 
 sessionTimeOutMilliSecs=200000 
@@ -8,6 +8,7 @@ maxInFlightRequests=20
 metricGroup=myGroup 
 metricType=myType
 
+topicName=$1
 
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
