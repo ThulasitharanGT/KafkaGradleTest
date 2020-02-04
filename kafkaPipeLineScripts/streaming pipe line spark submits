@@ -29,6 +29,10 @@ spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreami
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
 spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~CarSensor~2019-12-24,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-24,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-24,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-24,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-24
 
+cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
+spark-submit --class com.test.AtomicityUsingMysql.systemCommandRunningForStreamingPipeline  --num-executors 1 --executor-cores 2 --executor-memory 1g --driver-memory 1g --driver-cores 1 KafkaGradleTest-1.0-SNAPSHOT-all.jar shellScriptsWithParam=randomMsgProducer.sh~SCS~5~CarSensor~2019-12-25,randomMsgProducer.sh~Tyre~5~CarSensor~2019-12-25,randomMsgProducer.sh~TCS~5~CarSensor~2019-12-25,randomMsgProducer.sh~ERS~5~CarSensor~2019-12-25,randomMsgProducer.sh~DRS~5~CarSensor~2019-12-25
+
+
 // reading job
 
 cd /home/raptor/IdeaProjects/KafkaGradleTest/build/libs/
