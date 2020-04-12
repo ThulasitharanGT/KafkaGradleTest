@@ -10,6 +10,7 @@ object randomMsgProducer {
   val listOfChars = ('a' to 'z') ++ ('A' to 'Z')
 
   def randomRecordGenerator(topicName: String, kafkaProducer: KafkaProducer[String, String], key: String, valueCharLength: Int,partitionValue:String): Unit = kafkaProducer.send(new ProducerRecord[String, String](topicName, key, randomStringGenerator(valueCharLength)+"~"+partitionValue))
+  def randomRecordGenerator(topicName: String, kafkaProducer: KafkaProducer[String, String], key: String, valueCharLength: Int,partitionValue:String,raceTrack:String,runType:String): Unit = kafkaProducer.send(new ProducerRecord[String, String](topicName, key, randomStringGenerator(valueCharLength)+"~"+partitionValue+"~"+raceTrack+"~"+runType))
 
   def randomStringGenerator(tempStringLength: Int) = {
     var tempString: String = null
@@ -38,8 +39,8 @@ object randomMsgProducer {
     val valueSerializer=inputMap("valueSerializer")
     val bootStrapServer=inputMap("bootStrapServer")
     val partitionValue=inputMap("partitionValue")
-
-
+    val raceTrack=inputMap("raceTrack")
+    val runType=inputMap("runType")
     val props = new Properties()
     //props.put("bootstrap.servers", "localhost:9092,localhost:9093,localhost:9094")
     //props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
@@ -55,7 +56,8 @@ object randomMsgProducer {
     //for (i <- 1 to 100)
       //randomRecordGenerator(topicName, Kafka_Producer, "TCS", 10)
       for (i <- 1 to numOfRecords)
-        randomRecordGenerator(topicName, Kafka_Producer, key, messageLength,partitionValue)
+        randomRecordGenerator(topicName, Kafka_Producer, key, messageLength,partitionValue,raceTrack,runType)
+       // randomRecordGenerator(topicName, Kafka_Producer, key, messageLength,partitionValue) -- use for old project
 
   }
 }
