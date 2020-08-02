@@ -21,8 +21,8 @@ class SensorPartitioner extends Partitioner{
   {
     val PartitionsList=cluster.partitionsForTopic(topic)
     val NumPartitions=PartitionsList.size()
-    val sptrac = math.abs(NumPartitions*0.3).toInt
-    val sptyre = math.abs(NumPartitions*0.7).toInt
+    val sptrac = math.abs(NumPartitions*0.3).toInt // 0 to 2 is tcs
+    val sptyre = math.abs(NumPartitions*0.7).toInt // 3 to 7 is tyre , rest goes to normal
     var p:Int =0
  if (keyBytes==null || !(key.isInstanceOf[String]) )
       {

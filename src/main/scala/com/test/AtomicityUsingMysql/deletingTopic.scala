@@ -11,7 +11,6 @@ object deletingTopic {
   def deleteTopic(adminZKClientConnection:AdminZkClient,topicName:String)=adminZKClientConnection.deleteTopic(topicName)
 
   def main(args: Array[String]): Unit = {
-
     val inputMap:collection.mutable.Map[String,String]= collection.mutable.Map[String,String]()
     for (arg <- args)
     {
@@ -29,8 +28,6 @@ object deletingTopic {
     lazy val time=Time.SYSTEM
     val metricGroup=inputMap("metricGroup")
     val metricType=inputMap("metricType")
-
-
     // for zookeeper connection
    /* val topicName="CarSensor"
     val zookeeperIp="localhost:3039"
@@ -46,7 +43,6 @@ object deletingTopic {
     deleteTopic(adminZKClientConnection,topicName)
     checkIfTopicExists(zkKafkaClient,topicName) match {case false => println("Topic deleted in cluster"); case _ =>  println("Topic not deleted in cluster") }
   }
-
 }
 
 /*
