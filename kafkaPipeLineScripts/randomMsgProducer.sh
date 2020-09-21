@@ -13,13 +13,13 @@ bootStrapServer=localhost:9092,localhost:9093,localhost:9094
 #jarName=$1
 key=$1
 messageLength=$2
-numOfRecords=$4
-topicName=$3
+numOfRecords=$3
+topicName=$4
 #keySerializer=$6
 #valueSerializer=$7
 #bootStrapServer=$8
-partitionValue=$4 #date added to message , Not the kafka partition
-numOfRecords=$5
+partitionValue=$5 #date added to message , Not the kafka partition
+#numOfRecords=$5
 raceTrack=$6 #raceTrack added to message
 runType=$7 #runType added to message
 

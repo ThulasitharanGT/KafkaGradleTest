@@ -63,9 +63,9 @@ object randomMsgProducer {
     /*props.put("partitioner.class", "com.test.AtomicityUsingMysql.SensorPartitioner")  //test
     props.put("stability.sensor.name", "check1") //test
     props.put("tyre.sensor.name", "check2") //test */
-   props.put("partitioner.class", "com.test.AtomicityUsingMysql.SensorPartitioner")
+  /* props.put("partitioner.class", "com.test.AtomicityUsingMysql.SensorPartitioner")
     props.put("stability.sensor.name", "SCS")
-    props.put("tyre.sensor.name", "Tyre")
+    props.put("tyre.sensor.name", "Tyre")*/
     val Kafka_Producer = new KafkaProducer[String, String](props)
     //for (i <- 1 to 100)
       //randomRecordGenerator(topicName, Kafka_Producer, "TCS", 10)

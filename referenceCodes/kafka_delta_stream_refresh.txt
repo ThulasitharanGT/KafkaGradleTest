@@ -1,0 +1,110 @@
+push data to kafka,
+
+read from one spark delta stream write it as a table, then read from another delta sream from that location write it into another table
+
+//244
+
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/createTopic.sh tempTopic 2 2
+
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2020 mugello stint1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2020 mugello stint2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2020 mugello stint3
+
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh fol 4 500000 tempTopic 2021 mugello stint1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh col 4 500000 tempTopic 2021 mugello stint2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh sol 4 500000 tempTopic 2021 mugello stint3
+
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2020 imola stint1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2020 imola stint2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2020 imola stint3
+
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola fp1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola fp2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola fp3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola q1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola q2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola q3
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh lol 4 500000 tempTopic 2021 imola stint1
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh mol 4 500000 tempTopic 2021 imola stint2
+sh /home/raptor/IdeaProjects/KafkaGradleTest/kafkaPipeLineScripts/randomMsgProducer.sh yol 4 500000 tempTopic 2021 imola stint3
+
+
+
+//300
+
+spark-shell --packages io.delta:delta-core_2.12:0.7.0,org.apache.spark:spark-streaming-kafka-0-10_2.12:3.0.0,org.apache.kafka:kafka-clients:2.3.1,org.apache.kafka:kafka_2.12:2.3.1,org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0
+
+import org.apache.spark.sql.types._
+
+val readStreamDf= spark.readStream.format("kafka").option("subscribe","tempTopic").option("maxOffsetsPerTrigger","5").option("startingOffsets","earliest").option("kafka.bootstrap.servers","localhost:9092,localhost:9093,localhost:9094").option("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer").option("checkpointLocation","/user/raptor/streams/kafkaPipelineTemp/checkpoints/checkpoint1/").load.withColumn("key",lit(col("key").cast(StringType))).withColumn("value",lit(split(col("value").cast(StringType),"~"))).selectExpr("key","topic","partition","offset","timestamp","timestampType","value[0] as reading","value[1] as year","value[2] as circuit","value[3] as session")
+
+val writeStreamDf=readStreamDf.writeStream.outputMode("append").format("delta").option("checkpointLocation","/user/raptor/streams/kafkaPipelineTemp/checkpoints/checkpoint2/").option("path","/user/raptor/streams/kafkaPipelineTemp/base1/").partitionBy("year","circuit","session").start
+
+writeStreamDf.awaitTermination
+
