@@ -22,7 +22,7 @@ object randomDataGenerator extends SparkOpener{
   }
   def randomDataFrameStreamGenerator(spark:org.apache.spark.sql.SparkSession,numOfRecordsPerBatch:Int,stringSize:Int)={
     val startStreamDF = spark.readStream.format("rate").option("rowsPerSecond",s"${numOfRecordsPerBatch}").load.withColumn("randomInt",org.apache.spark.sql.functions.lit(randomInteger)).withColumn("randomString",org.apache.spark.sql.functions.lit(randomString(stringSize)))
-    startStreamDF.writeStream.outputMode("complete").format("console").option("checkpointLocation",s"file:///user/tmp/stream/checkpoint_${spark.sparkContext.applicationId}/").foreachBatch(
+    startStreamDF.writeStream.outputMode("append").format("console").option("checkpointLocation",s"file:///user/tmp/stream/checkpoint_${spark.sparkContext.applicationId}/").foreachBatch(
       (batchDF:org.apache.spark.sql.DataFrame,tmpLong:Long)=> {
       import java.text.SimpleDateFormat
       import java.util.Date
