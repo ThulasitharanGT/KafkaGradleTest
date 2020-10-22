@@ -20,8 +20,8 @@ object randomDataGenerator extends SparkOpener{
     import spark.implicits._
     tempArrayBuffer.toSeq.toDF
   }
-  def randomDataFrameStreamGenerator(spark:org.apache.spark.sql.SparkSession,numOfRecords:Int,stringSize:Int)={
-    val startStreamDF = spark.readStream.format("rate").option("rowsPerSecond","5").load.withColumn("randomInt",org.apache.spark.sql.functions.lit(randomInteger)).withColumn("randomString",org.apache.spark.sql.functions.lit(randomString(stringSize)))
+  def randomDataFrameStreamGenerator(spark:org.apache.spark.sql.SparkSession,numOfRecordsPerBatch:Int,stringSize:Int)={
+    val startStreamDF = spark.readStream.format("rate").option("rowsPerSecond",s"${numOfRecordsPerBatch}").load.withColumn("randomInt",org.apache.spark.sql.functions.lit(randomInteger)).withColumn("randomString",org.apache.spark.sql.functions.lit(randomString(stringSize)))
     startStreamDF.writeStream.outputMode("complete").format("console").option("checkpointLocation",s"file:///user/tmp/stream/checkpoint_${spark.sparkContext.applicationId}/").foreachBatch(
       (batchDF:org.apache.spark.sql.DataFrame,tmpLong:Long)=> {
       import java.text.SimpleDateFormat
@@ -41,9 +41,9 @@ object randomDataGenerator extends SparkOpener{
        val valPart=arg.split("=",2)(1)
        inputMap.put(keyPart,valPart)
      }
-    val numberOfRecords=inputMap("numberOfRecords").toInt
+    val numberOfRecordsPerBatch=inputMap("numberOfRecordsPerBatch").toInt
     val sizeOfString=inputMap("sizeOfString").toInt
-    randomDataFrameStreamGenerator(spark,numberOfRecords,sizeOfString)
+    randomDataFrameStreamGenerator(spark,numberOfRecordsPerBatch,sizeOfString)
     //randomDataFrameGenerator(spark,numberOfRecords,sizeOfString).show(false)
   }
 }
