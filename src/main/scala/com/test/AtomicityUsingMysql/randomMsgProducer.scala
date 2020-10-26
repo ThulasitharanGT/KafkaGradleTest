@@ -70,7 +70,7 @@ object randomMsgProducer {
     //for (i <- 1 to 100)
       //randomRecordGenerator(topicName, Kafka_Producer, "TCS", 10)
       for (i <- 1 to numOfRecords)
-     //   randomRecordGenerator(topicName, Kafka_Producer, key, messageLength) // this is for testing
+       //randomRecordGenerator(topicName, Kafka_Producer, key, messageLength) // this is for testing
         randomRecordGenerator(topicName, Kafka_Producer, key, messageLength,partitionValue,raceTrack,runType) //current new
        // randomRecordGenerator(topicName, Kafka_Producer, key, messageLength,partitionValue) // use for old project
 
