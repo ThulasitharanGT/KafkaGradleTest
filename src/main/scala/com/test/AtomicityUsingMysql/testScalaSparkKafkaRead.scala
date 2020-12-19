@@ -39,6 +39,7 @@ object testScalaSparkKafkaRead extends SparkOpener{
        val query = df.writeStream.outputMode("append").option("checkpointLocation",checkPointPath).option("path", bronzeTablePath).partitionBy("date", "key", "partition").start()
        //query.awaitTermination(streamTimeOutMilliSeconds)
       query.awaitTermination()
+
       spark.close
        }
 // backup val query = df.withColumn("date",lit("2019-12-27")).writeStream.outputMode("append").format("parquet").option("checkpointLocation","hdfs://localhost/user/raptor/kafka/temp/checkpoint").option("path","hdfs://localhost/user/raptor/kafka/temp/output/kafkaDeltaTableDump/carSensorBronze").partitionBy("key","date","partition").start()
