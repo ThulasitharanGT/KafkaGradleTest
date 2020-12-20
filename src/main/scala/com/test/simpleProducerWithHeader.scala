@@ -9,7 +9,6 @@ import java.util.concurrent.ThreadLocalRandom
 
 object simpleProducerWithHeader {
   def main (args: Array[String]) :Unit = {
-
     val tName = "TopicTest"
     val tKey = "key-1"
     val tValue = "Value"
@@ -22,6 +21,35 @@ object simpleProducerWithHeader {
     val Kafka_Producer = new KafkaProducer[String,String](props)
  //   val headers = Arrays.asList(new ReordHeader(headerKey, headerVal.getBytes()))
     val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    /*
+    val streamOneFilterSet="fp1,fp2,fp3"
+    val streamTwoFilterSet="q1,q2,q3"
+
+    val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    pRecord.headers().add(new RecordHeader("fp1", "freePractice1".getBytes()))
+    Kafka_Producer.send(pRecord)
+
+    val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    pRecord.headers().add(new RecordHeader("q1", "quali1".getBytes()))
+    Kafka_Producer.send(pRecord)
+
+    val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    pRecord.headers().add(new RecordHeader("fp2", "freePractice2".getBytes()))
+    Kafka_Producer.send(pRecord)
+
+    val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    pRecord.headers().add(new RecordHeader("fp3", "freePractice3".getBytes()))
+    Kafka_Producer.send(pRecord)
+
+    val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    pRecord.headers().add(new RecordHeader("q2", "quali2".getBytes()))
+    Kafka_Producer.send(pRecord)
+
+    val pRecord = new ProducerRecord[String,String](tName, null, tKey, tValue)
+    pRecord.headers().add(new RecordHeader("q3", "quali3".getBytes()))
+    Kafka_Producer.send(pRecord)
+
+     */
     pRecord.headers().add(new RecordHeader(headerKey, headerVal.getBytes()))
     pRecord.headers().add(new RecordHeader(s"${headerKey}2",s"${headerVal}2".getBytes()))
     Kafka_Producer.send(pRecord)
